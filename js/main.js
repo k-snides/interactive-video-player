@@ -1,8 +1,10 @@
 (function($) {
 
 	// Global Variables
-	var video     = document.getElementById('theVideo');
-	var playPause = document.getElementById('playPause');
+	var video      = document.getElementById('theVideo');
+	var playPause  = document.getElementById('playPause');
+	var restart    = document.getElementById('restart');
+	var videoEnd   = document.getElementById('videoEnd');
 	
 	
 	// Plays video and toggles play/pause button
@@ -21,6 +23,17 @@
 	};
 		
 		
+	restart.addEventListener("click", function() {
+		video.currentTime = 0;
+	}, false);
+
+	videoEnd.addEventListener("click", function() {
+		var getVideoDuration = video.duration;
+		video.currentTime = getVideoDuration;
+		console.log(getVideoDuration);
+	}, false);
+
+
 		
 
 	
