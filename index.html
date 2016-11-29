@@ -7,19 +7,31 @@
 		<title>Interactive Video Player</title>
 
 		<!-- CSS -->
-		<link rel="stylesheet" href="" />
+		<!-- <link rel="stylesheet" href="style.css" /> -->
+
+		<style>
+			img {
+				background-color: orange;
+				padding: 2px;
+			}
+		</style>
 	</head>
 	<body>
 		
 		<div class="wrapper">
 			
-			<video controls>
+			<video id="theVideo">
 				<source src="video/video.mp4" type="video/mp4" />
 				<source src="video/video.ogg" type="video/ogg" />
 				<track label="English" kind="subtitles" srclang="en" src="video/captions.vtt" default />
 			</video>
 
+			<img id="playPause" src="icons/play-icon.png" alt="Play button" />
+
 		</div><!-- /.wrapper -->
 
+		<!-- JavaScript & jQuery -->
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+		<script src="js/main.js"></script>
 	</body>
 </html>
