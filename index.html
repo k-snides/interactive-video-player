@@ -17,7 +17,7 @@
 
 			button {
 				background: transparent;
-				display: block;
+				display: inline-block;
 				padding: 10px;
 				font-size: 2em;
 			}
@@ -38,9 +38,6 @@
 
 			<img id="playPause" src="icons/play-icon.png" alt="Play button" />
 
-			<button id="restart">|<<</button>
-			<button id="videoEnd">>>|</button>
-
 			<span id="videoCurrentTime">
 				<!-- display video current time here -->
 				00:00 / 
@@ -48,6 +45,16 @@
 			<span id="vidLength">
 				<!-- display video length here -->
 			</span>
+
+			<div id="button-controls">
+				<button id="restart">|<<</button>
+				<button id="rewind"><<</button>
+				<button id="volumeUp">+</button>
+				<button id="volumeDown">-</button>
+				<button id="forward">>></button>
+				<button id="videoEnd">>>|</button>
+			</div>
+
 
 		</div><!-- /.wrapper -->
 
