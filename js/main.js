@@ -20,7 +20,6 @@ function init() {
 	var fullScreen    = document.getElementById('fullScreen');
 
 
-
 	// TODO: Get duration to show properly and not NaN
 	// video.addEventListener("loadedmetadata", function() {
 	// 	var duration = video.duration;
@@ -109,6 +108,22 @@ function init() {
 		displayVideoTime = displayVideoTime < 10 ? '0' + displayVideoTime : displayVideoTime;
 		displayVideoTime = '00:' + displayVideoTime + ' /';
 		videoCurrentTime.textContent = displayVideoTime;
+	};
+
+
+	/**
+	 * [updateProgressBar - updates progress bar as video plays]
+	 */
+	var updateProgressBar = function() {
+		var progressBar = document.getElementById('progress-bar');
+		var percentage = Math.floor((100 / video.duration) * video.currentTime);
+		progressBar.value = percentage;
+
+		// Click on progress bar to be taken to that part of video
+		progressBar.addEventListener("click", function(event) {
+			var percent = event.offsetX / this.offsetWidth;
+	    video.currentTime = percent * video.duration;
+		}, false)
 	};
 
 
@@ -203,6 +218,9 @@ function init() {
       video.webkitRequestFullscreen();
     }
 	}, false);
+
+	// Display Progress bar
+	video.addEventListener("timeupdate", updateProgressBar, false);
 
 }// end of init function
 

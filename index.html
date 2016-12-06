@@ -24,6 +24,14 @@
 			button:hover {
 				
 			}
+
+			progress[value] {
+				/*appearance: none;
+				border: none;*/
+				display: block;
+				width: 100%;
+				/*height: 30px;*/
+			}
 		</style>
 	</head>
 	<body>
@@ -35,6 +43,8 @@
 				<source src="video/video.ogg" type="video/ogg" />
 				<track label="English" kind="subtitles" srclang="en" src="video/captions.vtt" default />
 			</video>
+
+			<progress id="progress-bar" min="0" max="100" value="0"></progress>
 
 			<!-- Play / Pause button -->
 			<img id="playPause" src="icons/play-icon.png" alt="Play button" />
