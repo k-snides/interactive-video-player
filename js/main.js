@@ -17,6 +17,9 @@ function init() {
 	var forward       = document.getElementById('forward');
 	var volumeUp      = document.getElementById('volumeUp');
 	var volumeDown    = document.getElementById('volumeDown');
+	var fullScreen    = document.getElementById('fullScreen');
+
+
 
 	// TODO: Get duration to show properly and not NaN
 	// video.addEventListener("loadedmetadata", function() {
@@ -106,7 +109,7 @@ function init() {
 		displayVideoTime = displayVideoTime < 10 ? '0' + displayVideoTime : displayVideoTime;
 		displayVideoTime = '00:' + displayVideoTime + ' /';
 		videoCurrentTime.textContent = displayVideoTime;
-	}
+	};
 
 
 	/**
@@ -186,6 +189,19 @@ function init() {
 			unmuteWithVolumeButtons();
 		}
 		console.log(video.volume);
+	}, false);
+
+	// Video to Full Screen mode
+	fullScreen.addEventListener("click", function() {
+		if (video.requestFullscreen) {
+      video.requestFullscreen();
+    }
+    else if (video.mozRequestFullScreen) {
+      video.mozRequestFullScreen();
+    }
+    else if (video.webkitRequestFullscreen) {
+      video.webkitRequestFullscreen();
+    }
 	}, false);
 
 }// end of init function
