@@ -17,8 +17,11 @@ function init() {
 	var forward       = document.getElementById('forward');
 	var volumeUp      = document.getElementById('volumeUp');
 	var volumeDown    = document.getElementById('volumeDown');
+	var slower        = document.getElementById('slower');
+	var faster        = document.getElementById('faster');
 	var fullScreen    = document.getElementById('fullScreen');
 
+	console.log(video.playbackRate);
 
 	// TODO: Get duration to show properly and not NaN
 	// video.addEventListener("loadedmetadata", function() {
@@ -58,6 +61,9 @@ function init() {
 		// if video is paused, play video and display pause icon
 		if (video.paused) {   
 		    video.play();
+		    // If play back speed is altered
+		    // pressing play will resume normal play back
+		    video.playbackRate = 1;
 		    playPause.setAttribute('src', 'icons/pause-icon.png');
 		    playPause.setAttribute('alt', 'Pause button');
 		}
@@ -115,15 +121,17 @@ function init() {
 	 * [updateProgressBar - updates progress bar as video plays]
 	 */
 	var updateProgressBar = function() {
-		var progressBar = document.getElementById('progress-bar');
+		var progressBar     = document.getElementById('progress-bar');
+		var progressPercent = document.getElementById('progressPercent');
 		var percentage = Math.floor((100 / video.duration) * video.currentTime);
 		progressBar.value = percentage;
+		progressPercent.textContent = percentage + '%';
 
 		// Click on progress bar to be taken to that part of video
 		progressBar.addEventListener("click", function(event) {
 			var percent = event.offsetX / this.offsetWidth;
 	    video.currentTime = percent * video.duration;
-		}, false)
+		}, false);
 	};
 
 
@@ -182,6 +190,19 @@ function init() {
 		video.currentTime += 10;
 	}, false);
 
+
+	// Turns volume down 10%
+	volumeDown.addEventListener("click", function() {
+		video.volume -= 0.1;
+		if (video.volume <= 0.1) {
+			video.volume = 0.1;
+		}
+		if (video.muted) {
+			unmuteWithVolumeButtons();
+		}
+		console.log(video.volume);
+	}, false);
+
 	// Turns volume up 10%
 	volumeUp.addEventListener("click", function() {
 		video.volume += 0.1;
@@ -193,17 +214,27 @@ function init() {
 		}
 		console.log(video.volume);
 	}, false);
+	
+	// Slows down play back speed by 10%;
+	slower.addEventListener("click", function() {
+		video.playbackRate -= .1;
 
-	// Turns volumen down 10%
-	volumeDown.addEventListener("click", function() {
-		video.volume -= 0.1;
-		if (video.volume <= 0.1) {
-			video.volume = 0.1;
+		// Video loses audio below 0.5 playbackRate and freezes
+		if (video.playbackRate <= 0.5) {
+			video.playbackRate = 0.5;
 		}
-		if (video.muted) {
-			unmuteWithVolumeButtons();
+		console.log(video.playbackRate);
+	}, false);
+
+	// Speeds up play back speed by 10%;
+	faster.addEventListener("click", function() {
+		video.playbackRate += .1;
+		
+		// playbackRate at 2.0 is double original speed
+		if (video.playbackRate >= 2.0) {
+			video.playbackRate = 2.0;
 		}
-		console.log(video.volume);
+		console.log(video.playbackRate);
 	}, false);
 
 	// Video to Full Screen mode
