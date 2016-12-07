@@ -250,6 +250,18 @@ function init() {
     }
 	}, false);
 
+	// Hide video controls on mouseout
+	video.addEventListener("mouseout", function() {
+		var buttonControls = document.getElementById('button-controls');
+		buttonControls.style.display = 'none';
+	}, false);
+
+	// Display video controls on mouseover
+	video.addEventListener("mouseover", function() {
+		var buttonControls = document.getElementById('button-controls');
+		buttonControls.style.display = 'block';
+	}, false);
+
 	// Display Progress bar
 	video.addEventListener("timeupdate", updateProgressBar, false);
 
