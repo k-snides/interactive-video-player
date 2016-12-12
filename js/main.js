@@ -21,7 +21,11 @@ function init() {
 	var faster        = document.getElementById('faster');
 	var fullScreen    = document.getElementById('fullScreen');
 
-	console.log(video.playbackRate);
+	var transcriptElements = document.getElementsByTagName('p');
+
+	console.log(transcriptElements);
+
+	var currentTime = video.currentTime;
 
 	// TODO: Get duration to show properly and not NaN
 	// video.addEventListener("loadedmetadata", function() {
@@ -118,6 +122,34 @@ function init() {
 
 
 	/**
+	 * [hightlightTranscript - hightlights transcript while video plays]
+	 */
+	var hightlightTranscript = function() {
+		var theCurrentTime = video.currentTime.toFixed(3)
+		var dataStart;
+		var dataEnd;
+		var start;
+		var end;
+
+		for (var i = 0; i < transcriptElements.length; i++) {
+
+			dataStart = transcriptElements[i].getAttribute('data-start');
+			dataEnd   = transcriptElements[i].getAttribute('data-end');
+
+			start = parseFloat(dataStart);
+			end   = parseFloat(dataEnd);
+			
+			if (theCurrentTime >= start && theCurrentTime <= end) {
+				transcriptElements[i].className = "hilite";
+			}
+			else {
+				transcriptElements[i].className = "";
+			}
+		}
+	};
+
+
+	/**
 	 * [updateProgressBar - updates progress bar as video plays]
 	 */
 	var updateProgressBar = function() {
@@ -164,10 +196,13 @@ function init() {
 
 	
 
-	// Get video current time for display
-	video.ontimeupdate = function() {
-		displayVideoCurrentTime();
-	};
+	// When the current time updates,
+	// calls the displayVideoCurrentTime() function
+	video.addEventListener("timeupdate", displayVideoCurrentTime, false);
+
+	// When the current time updates,
+	// calls the hightlightTranscript() function
+	video.addEventListener("timeupdate", hightlightTranscript, false);
 	
 	// Skips to the beginning of the video
 	restart.addEventListener("click", function() {
@@ -251,23 +286,21 @@ function init() {
 	}, false);
 
 	// Hide video controls on mouseout
-	video.addEventListener("mouseout", function() {
-		var buttonControls = document.getElementById('button-controls');
-		buttonControls.style.display = 'none';
-	}, false);
+	// video.addEventListener("mouseout", function() {
+	// 	var buttonControls = document.getElementById('button-controls');
+	// 	buttonControls.style.display = 'none';
+	// }, false);
 
 	// Display video controls on mouseover
-	video.addEventListener("mouseover", function() {
-		var buttonControls = document.getElementById('button-controls');
-		buttonControls.style.display = 'block';
-	}, false);
+	// video.addEventListener("mouseover", function() {
+	// 	var buttonControls = document.getElementById('button-controls');
+	// 	buttonControls.style.display = 'block';
+	// }, false);
 
 	// Display Progress bar
 	video.addEventListener("timeupdate", updateProgressBar, false);
 
 }// end of init function
-
-
 		
 
 	
