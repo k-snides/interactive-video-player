@@ -20,12 +20,27 @@ function init() {
 	var slower        = document.getElementById('slower');
 	var faster        = document.getElementById('faster');
 	var fullScreen    = document.getElementById('fullScreen');
+	var cc            = document.getElementById('cc');
 
 	var transcriptElements = document.getElementsByTagName('p');
 
-	console.log(transcriptElements);
-
 	var currentTime = video.currentTime;
+
+	// var clickScript = document.getElementById('transcript');
+	// transcriptElements.onclick = function() {
+	// 	transcriptElements = this;
+	// 	this.style.backgroundColor = "yellow";
+	// 	console.log(this);
+	// };
+	
+	
+
+	
+	
+
+
+
+
 
 	// TODO: Get duration to show properly and not NaN
 	// video.addEventListener("loadedmetadata", function() {
@@ -98,6 +113,21 @@ function init() {
 		}
 	};
 
+	
+	/**
+	 * [ccOnOff - Toggles cc on and off]
+	 */
+	var ccOnOff = function() {
+		// button is unchecked/off cc will be hidden
+		if (cc.checked === false) {
+			video.textTracks[0].mode = "hidden";
+		}
+		// otherwise if button is checked/on cc will be showing
+		else {
+			video.textTracks[0].mode = "showing";
+		}
+	};
+
 
 	/**
 	 * [unmuteWithVolumeButtons - unmutes audio with volume buttons]
@@ -125,7 +155,7 @@ function init() {
 	 * [hightlightTranscript - hightlights transcript while video plays]
 	 */
 	var hightlightTranscript = function() {
-		var theCurrentTime = video.currentTime.toFixed(3)
+		var theCurrentTime = video.currentTime.toFixed(3);
 		var dataStart;
 		var dataEnd;
 		var start;
@@ -285,6 +315,7 @@ function init() {
     }
 	}, false);
 
+	//  ------> TODO: UNCOMMENT WHEN DONE AND TWEAK <-------
 	// Hide video controls on mouseout
 	// video.addEventListener("mouseout", function() {
 	// 	var buttonControls = document.getElementById('button-controls');
@@ -299,6 +330,9 @@ function init() {
 
 	// Display Progress bar
 	video.addEventListener("timeupdate", updateProgressBar, false);
+
+	// Toggles cc on and off
+	cc.addEventListener("click", ccOnOff, false);
 
 }// end of init function
 		

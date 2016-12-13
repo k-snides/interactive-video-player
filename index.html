@@ -9,6 +9,7 @@
 		<!-- CSS -->
 		<!-- <link rel="stylesheet" href="style.css" /> -->
 
+		<!-- Temporary CSS below -->
 		<style>
 			img {
 				background-color: orange;
@@ -41,13 +42,82 @@
 			p {
 				display: inline;
 			}
+
+			/*cc button*/
+			.onoffswitch {
+		    position: relative;
+		    width: 60px;
+		    -webkit-user-select:none;
+		    -moz-user-select:none;
+		    -ms-user-select: none;
+			}
+			.onoffswitch-checkbox {
+			    display: none;
+			}
+			.onoffswitch-label {
+			    display: block;
+			    overflow: hidden;
+			    cursor: pointer;
+			    border: 2px solid #999999;
+			    border-radius: 20px;
+			}
+			.onoffswitch-inner {
+			    display: block;
+			    width: 200%;
+			    margin-left: -100%;
+			    transition: margin 0.3s ease-in 0s;
+			}
+			.onoffswitch-inner:before, .onoffswitch-inner:after {
+			    display: block;
+			    float: left;
+			    width: 50%;
+			    height: 20px;
+			    padding: 0;
+			    line-height: 20px;
+			    font-size: 14px;
+			    color: white;
+			    font-family: Trebuchet, Arial, sans-serif;
+			    font-weight: bold;
+			    box-sizing: border-box;
+			}
+			.onoffswitch-inner:before {
+			    content: "ON";
+			    padding-left: 6px;
+			    background-color: #FAC414;
+			    color: #FFFFFF;
+			}
+			.onoffswitch-inner:after {
+			    content: "OFF";
+			    padding-right: 6px;
+			    background-color: #EEEEEE;
+			    color: #999999;
+			    text-align: right;
+			}
+			.onoffswitch-switch {
+			    display: block;
+			    width: 20px;
+			    margin: 0px;
+			    background: #FFFFFF;
+			    position: absolute;
+			    top: 0; bottom: 0;
+			    right: 38px;
+			    border: 2px solid #999999;
+			    border-radius: 20px;
+			    transition: all 0.3s ease-in 0s; 
+			}
+			.onoffswitch-checkbox:checked + .onoffswitch-label .onoffswitch-inner {
+			    margin-left: 0;
+			}
+			.onoffswitch-checkbox:checked + .onoffswitch-label .onoffswitch-switch {
+			    right: 0px; 
+			}
 		</style>
 	</head>
 	<body>
 		
 		<div class="wrapper">
 			
-			<video id="theVideo">
+			<video preload="" id="theVideo">
 				<source src="video/video.mp4" type="video/mp4" />
 				<source src="video/video.ogg" type="video/ogg" />
 				<track label="English" kind="subtitles" srclang="en" src="video/captions.vtt" default />
@@ -90,67 +160,63 @@
 				</button>
 				<button id="forward">>></button>
 				<button id="videoEnd">>>|</button>
+
+				<!-- cc button -->
+				<div class="onoffswitch">
+			    <input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="cc" checked />
+			    <label class="onoffswitch-label" for="cc">
+			        <span class="onoffswitch-inner"></span>
+			        <span class="onoffswitch-switch"></span>
+			    </label>
+				</div>
 			</div>
 
 			<!-- Transcript -->
 			<div id="transcript">
 				<p class="words" data-start="00.240" data-end="04.129">
-					Now that we've looked at the architecture
-					of the internet, let's see how you might
+					Now that we've looked at the architecture of the internet, let's see how you might
 				</p>
 				<p class="words" data-start="04.130" data-end="07.534">
-					connect your personal devices to
-					the internet inside your house.
+					connect your personal devices to the internet inside your house.
 				</p>
 				<p class="words" data-start="07.535" data-end="11.269">
-					Well there are many ways to
-					connect to the internet, and
+					Well there are many ways to connect to the internet, and
 				</p>
 				<p class="words" data-start="11.270" data-end="13.959">
 					most often people connect wirelessly.
 				</p>
 				<p class="words" data-start="13.960" data-end="17.939">
-					Let's look at an example of how
-					you can connect to the internet.
+					Let's look at an example of how you can connect to the internet.
 				</p>
 				<p class="words" data-start="17.940" data-end="22.369">
-					If you live in a city or a town,
-					you probably have a coaxial cable for
+					If you live in a city or a town, you probably have a coaxial cable for
 				</p>
 				<p class="words" data-start="22.370" data-end="26.879">
-					cable Internet, or a phone line if you
-					have DSL, running to the outside of
+					cable Internet, or a phone line if you have DSL, running to the outside of
 				</p>
 				<p class="words" data-start="26.880" data-end="32.099">
-					your house, that connects you to
-					the Internet Service Provider, or ISP.
+					your house, that connects you to the Internet Service Provider, or ISP.
 				</p>
 				<p class="words" data-start="32.100" data-end="34.729">
-					If you live far out in the country,
-					you'll more likely have
+					If you live far out in the country, you'll more likely have
 				</p>
 				<p class="words" data-start="34.730" data-end="39.429">
-					a dish outside your house, connecting
-					you wirelessly to your closest ISP, or
+					a dish outside your house, connecting you wirelessly to your closest ISP, or
 				</p>
 				<p class="words" data-start="39.430" data-end="42.349">
 					you might also use the telephone system.
 				</p>
 				<p class="words" data-start="42.350" data-end="46.299">
-					Whether a wire comes straight from
-					the ISP hookup outside your house, or
+					Whether a wire comes straight from the ISP hookup outside your house, or
 				</p>
 				<p class="words" data-start="46.300" data-end="49.269">
-					it travels over radio
-					waves from your roof,
+					it travels over radio waves from your roof,
 				</p>
 				<p class="words" data-start="49.270" data-end="53.759">
-					the first stop a wire will make once
-					inside your house, is at your modem.
+					the first stop a wire will make once inside your house, is at your modem.
 				</p>
 				<p class="words" data-start="53.760" data-end="57.759">
-					A modem is what connects the internet
-					to your network at home.
+					A modem is what connects the internet to your network at home.
 				</p>
 				<p class="words" data-start="57.780" data-end="60.150">
 					A few common residential modems are DSL or
@@ -161,7 +227,7 @@
 
 		<!-- JavaScript & jQuery -->
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-		<!-- <script src="js/jquery.js"></script> -->
+		<script src="js/jquery.js"></script>
 		<script src="js/main.js"></script>
 	</body>
 </html>
