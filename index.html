@@ -111,6 +111,18 @@
 			.onoffswitch-checkbox:checked + .onoffswitch-label .onoffswitch-switch {
 			    right: 0px; 
 			}
+
+			#transcript p:hover {
+				cursor: pointer;
+				background-color: #eee;
+			}
+
+			#stop div {
+				width: 5px;
+				height: 5px;
+				background-color: #000;
+				padding: 10px;
+			}
 		</style>
 	</head>
 	<body>
@@ -154,7 +166,9 @@
 					<img id="playPause" src="icons/play-icon.png" alt="Play button" />-
 				</button>
 				<button id="volumeDown">-</button>
-				<button id="stop">stop</button>
+				<button id="stop">
+					<div></div>
+				</button>
 				<button id="volumeUp">+</button>
 				<button id="faster">
 					<img id="playPause" src="icons/play-icon.png" alt="Play button" />+

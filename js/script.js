@@ -22,17 +22,13 @@ function init() {
 	var faster        = document.getElementById('faster');
 	var fullScreen    = document.getElementById('fullScreen');
 	var cc            = document.getElementById('cc');
-	
-	// var currentTime = video.currentTime;
 
 	var transcriptElements = document.getElementsByTagName('p');
 
 	// Sets volume at half
 	video.volume = .5;
 
-	
-	
-	
+
 
 
 
@@ -53,6 +49,16 @@ function init() {
 		displayLength.textContent = vidLength;
 	};
 
+
+	/**
+	 * [pause - Pauses video and displays the play icon]
+	 */
+	var pause = function() {
+		video.pause();
+		playPause.setAttribute('src', 'icons/play-icon.png');
+		playPause.setAttribute('alt', 'Play button');
+	};
+
 	
 	/**
 	 * [playOrPause - Plays video and toggles play/pause button]
@@ -61,19 +67,16 @@ function init() {
 	var playOrPause = function() {		
 		// if video is paused, play video and display pause icon
 		if (video.paused) {   
-		    video.play();
-		    // If play back speed is altered
-		    // pressing play will resume normal play back
-		    video.playbackRate = 1;
-		    playPause.setAttribute('src', 'icons/pause-icon.png');
-		    playPause.setAttribute('alt', 'Pause button');
-		    
+		 	video.play();
+		 	// If play back speed is altered
+		 	// pressing play will resume normal play back
+		 	video.playbackRate = 1;
+		 	playPause.setAttribute('src', 'icons/pause-icon.png');
+		 	playPause.setAttribute('alt', 'Pause button');
 		}
 		// otherwise if video is playing, pause video and display play icon
 		else { 
-		    video.pause();
-		    playPause.setAttribute('src', 'icons/play-icon.png');
-		    playPause.setAttribute('alt', 'Play button');
+	    pause();
 		}
 	};
 
@@ -102,7 +105,6 @@ function init() {
 	 */
 	var stopButton = function() {
 		playOrPause();
-		video.pause();
 		video.currentTime = 0;
 	};
 
@@ -192,6 +194,11 @@ function init() {
 
 	// ----- Event Listeners ----- //
 	
+	// When video ends, video pauses and displays play icon
+	video.addEventListener("ended", function() {
+		pause();
+	}, false);
+
 	// Calls the getDuration() when the video info is loaded; 
 	video.addEventListener("loadedmetadata", getDuration, false);
 
