@@ -16,25 +16,21 @@ function init() {
 	var rewind        = document.getElementById('rewind');
 	var forward       = document.getElementById('forward');
 	var volumeUp      = document.getElementById('volumeUp');
+	var stop				  = document.getElementById('stop');
 	var volumeDown    = document.getElementById('volumeDown');
 	var slower        = document.getElementById('slower');
 	var faster        = document.getElementById('faster');
 	var fullScreen    = document.getElementById('fullScreen');
 	var cc            = document.getElementById('cc');
+	
+	// var currentTime = video.currentTime;
 
 	var transcriptElements = document.getElementsByTagName('p');
 
-	var currentTime = video.currentTime;
+	// Sets volume at half
+	video.volume = .5;
 
-	// var clickScript = document.getElementById('transcript');
-	// transcriptElements.onclick = function() {
-	// 	transcriptElements = this;
-	// 	this.style.backgroundColor = "yellow";
-	// 	console.log(this);
-	// };
 	
-	
-
 	
 	
 
@@ -42,34 +38,20 @@ function init() {
 
 
 
-	// TODO: Get duration to show properly and not NaN
-	// video.addEventListener("loadedmetadata", function() {
-	// 	var duration = video.duration;
-	// 	console.log(duration);
-	// }, false);
 	
+	
+	/**
+	 * [getDuration - Gets video duration and displays it]
+	 */
+	var getDuration = function() {
+		var displayLength = document.getElementById('vidLength');
+		var vidLength = video.duration;
+		console.log('vidLength: ' + vidLength);
 
-	// Get video duration
-	// var vidLength  = video.duration;
-	// console.log(vidLength);
-	// vidLength = Math.floor(vidLength);
-	// console.log(vidLength);
-
-
-	// Display vidLength
-	var displayLength = document.getElementById('vidLength');
-	var vidLength = video.duration;
-	console.log(vidLength);
-
-	vidLength = Math.floor(vidLength);
-	vidLength = '00:' + vidLength;
-	displayLength.textContent = vidLength;
-
-	console.log(vidLength);
-
-	// Get video length for duration display
-	// var vidLength  = video.duration;
-	// displayVideoLength(vidLength);
+		vidLength = Math.floor(vidLength);
+		vidLength = '00:' + vidLength;
+		displayLength.textContent = vidLength;
+	};
 
 	
 	/**
@@ -85,6 +67,7 @@ function init() {
 		    video.playbackRate = 1;
 		    playPause.setAttribute('src', 'icons/pause-icon.png');
 		    playPause.setAttribute('alt', 'Pause button');
+		    
 		}
 		// otherwise if video is playing, pause video and display play icon
 		else { 
@@ -111,6 +94,16 @@ function init() {
 			muteUnmute.setAttribute('src', 'icons/volume-off-icon.png');
 			muteUnmute.setAttribute('alt', 'Volume off button');
 		}
+	};
+
+
+	/**
+	 * [stopButton - Starts video at the beginning]
+	 */
+	var stopButton = function() {
+		playOrPause();
+		video.pause();
+		video.currentTime = 0;
 	};
 
 	
@@ -197,34 +190,23 @@ function init() {
 	};
 
 
-	/**
-	 * [displayVideoLength - displays length of video]
-	 * @param  {[number]} vidLength [length of video]
-	 */
-	// function displayVideoLength(vidLength) {
-	// 	vidLength = Math.floor(vidLength);
-	// 	// Display video duration
-	// 	var displayLength = document.getElementById('vidLength');
-	// 	vidLength = '00:' + vidLength;
-	// 	displayLength.textContent = vidLength;
-	// }
-
-
+	// ----- Event Listeners ----- //
 	
+	// Calls the getDuration() when the video info is loaded; 
+	video.addEventListener("loadedmetadata", getDuration, false);
 
+	// Calls the playOrPause() when user clicks play/pause button
 	playPause.addEventListener("click", function() {
 		playOrPause();
 	}, false);
 
+	// Calls the stopButton() when user clicks stop button
+	stop.addEventListener("click", stopButton, false);
+
+	// Calls the muteUnmute() when user clicks mute/unmute button
 	muteUnmute.addEventListener("click", function() {
 		muteOrUnmute();
 	}, false);
-
-	// Set volume at half
-	video.volume = .5;
-	console.log(video.volume);
-
-	
 
 	// When the current time updates,
 	// calls the displayVideoCurrentTime() function
@@ -255,7 +237,6 @@ function init() {
 		video.currentTime += 10;
 	}, false);
 
-
 	// Turns volume down 10%
 	volumeDown.addEventListener("click", function() {
 		video.volume -= 0.1;
@@ -265,7 +246,7 @@ function init() {
 		if (video.muted) {
 			unmuteWithVolumeButtons();
 		}
-		console.log(video.volume);
+		// console.log(video.volume);
 	}, false);
 
 	// Turns volume up 10%
