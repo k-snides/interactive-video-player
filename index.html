@@ -31,14 +31,6 @@
 	      color: orange;
 	    }
 
-			progress[value] {
-				/*appearance: none;
-				border: none;*/
-				display: block;
-				width: 100%;
-				/*height: 30px;*/
-			}
-
 			p {
 				display: inline;
 			}
@@ -123,20 +115,75 @@
 				background-color: #000;
 				padding: 10px;
 			}
+
+			/*progress bars*/
+			#progress-buffer-bar {
+				position: relative;
+			}
+
+			.buffered,
+			#progress-bar {
+				position: absolute;
+			}
+
+			progress[value] {
+				-webkit-appearance: none;
+				   appearance: none;
+			    width: 1300px;
+			}
+
+			/* progress background */
+			progress[value]::-webkit-progress-bar {
+				background-color: transparent;
+				border-radius: 10px;
+				box-shadow: 0 2px 5px rgba(0, 0, 0, 0.25) inset;
+				height: 8px;
+			}
+			/* progress value */
+			progress[value]::-webkit-progress-value {
+				border-radius: 10px;
+			  background-color: orange;
+			  height: 8px;
+			}
+
+			.buffered {
+			  background: rgba(250, 250, 250, 0.2);
+			  border-radius: 10px;
+			  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.25) inset;
+			  height: 8px;
+			  width: 1300px;  
+			}
+
+			#buffered-amount {
+			  display: block;
+			  height: 100%;
+			  background-color: rgba(200, 200, 200, 0.7);
+			  width: 0; 
+			}
 		</style>
 	</head>
 	<body>
 		
 		<div class="wrapper">
 			
-			<video preload="" id="theVideo">
+			<!-- Video -->
+			<video preload id="theVideo">
 				<source src="video/video.mp4" type="video/mp4" />
 				<source src="video/video.ogg" type="video/ogg" />
 				<track label="English" kind="subtitles" srclang="en" src="video/captions.vtt" default />
 			</video>
-
-			<progress id="progress-bar" min="0" max="100" value="0"></progress>
-
+			
+			<!-- Progress and Buffer bars -->
+			<div id="progress-buffer-bar">
+				<div class="buffered">
+				  <span id="buffered-amount">
+				  	<!-- Buffer/Loading bar displayed here -->
+				  </span>
+				</div>
+				<progress id="progress-bar" min="0" max="100" value="0">
+					<!-- Progress bar displayed here -->
+				</progress>
+			</div>
 
 			<!-- Play / Pause button -->
 			<img id="playPause" src="icons/play-icon.png" alt="Play button" />
@@ -147,8 +194,8 @@
 			<!-- Full Screen button -->
 			<img id="fullScreen" src="icons/fullscreen-icon.png" alt="Full screen arrows" />
 
+			<!-- Button Controls -->
 			<div id="button-controls">
-
 				<div id="progressPercent"></div>
 				
 				<!-- Current Time / Duration  -->

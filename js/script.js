@@ -31,7 +31,8 @@ function init() {
 
 
 
-
+	
+	
 
 
 	
@@ -161,8 +162,8 @@ function init() {
 			dataStart = transcriptElements[i].getAttribute('data-start');
 			dataEnd   = transcriptElements[i].getAttribute('data-end');
 
-			start = parseFloat(dataStart);
-			end   = parseFloat(dataEnd);
+			start     = parseFloat(dataStart);
+			end       = parseFloat(dataEnd);
 			
 			if (theCurrentTime >= start && theCurrentTime <= end) {
 				transcriptElements[i].className = "hilite";
@@ -172,6 +173,18 @@ function init() {
 			}
 		}
 	};
+
+	/**
+	 * [bufferingProgressBar description]
+	 */
+	var bufferingProgressBar = function() {
+    var bufferedEnd = video.buffered.end(video.buffered.length - 1);
+    var duration = video.duration;
+    if (duration > 0) {
+    	var bufferBar = document.getElementById('buffered-amount');
+      bufferBar.style.width = ((bufferedEnd / duration) * 100) + "%";
+    }
+  }
 
 
 	/**
@@ -194,6 +207,9 @@ function init() {
 
 	// ----- Event Listeners ----- //
 	
+	// Buffer/Loading progress bar
+	video.addEventListener("progress", bufferingProgressBar, false);
+
 	// When video ends, video pauses and displays play icon
 	video.addEventListener("ended", function() {
 		pause();
