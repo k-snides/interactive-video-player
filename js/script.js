@@ -28,15 +28,13 @@ function init() {
 	// Sets volume at half
 	video.volume = .5;
 
+	console.log('testies');
 
 
 
-	
-	
 
 
-	
-	
+
 	/**
 	 * [getDuration - Gets video duration and displays it]
 	 */
@@ -105,7 +103,7 @@ function init() {
 	 * [stopButton - Starts video at the beginning]
 	 */
 	var stopButton = function() {
-		playOrPause();
+		pause();
 		video.currentTime = 0;
 	};
 
@@ -269,7 +267,7 @@ function init() {
 		if (video.muted) {
 			unmuteWithVolumeButtons();
 		}
-		// console.log(video.volume);
+		console.log(video.volume);
 	}, false);
 
 	// Turns volume up 10%
@@ -337,6 +335,7 @@ function init() {
 
 	// Toggles cc on and off
 	cc.addEventListener("click", ccOnOff, false);
+
 
 }// end of init function
 		

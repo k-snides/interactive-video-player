@@ -20,4 +20,12 @@ $(function() {
 		$('#theVideo')[0].currentTime = getDataStart;
 	});
 
+
+	// volume hover test
+	// $('#volumeUp').hover(function() {
+	// 	$('#box').fadeIn().on("click", function() {
+	// 		$(this).fadeOut();
+	// 	});
+	// });
+
 });

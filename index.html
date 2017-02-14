@@ -97,6 +97,17 @@
 			    border-radius: 20px;
 			    transition: all 0.3s ease-in 0s; 
 			}
+
+			.onoffswitch-switch:before {
+			    content: "cc";
+			    letter-spacing: 0.05em;
+			    color: orange;
+			    font-size: 1.2em;
+			    position: relative;
+			    top: -4px;
+			    left: 1px;
+			}
+
 			.onoffswitch-checkbox:checked + .onoffswitch-label .onoffswitch-inner {
 			    margin-left: 0;
 			}
@@ -160,6 +171,12 @@
 			  background-color: rgba(200, 200, 200, 0.7);
 			  width: 0; 
 			}
+
+			#box {
+				border: 3px solid red;
+				padding: 10px;
+				display: none;
+			}
 		</style>
 	</head>
 	<body>
@@ -183,6 +200,9 @@
 				<progress id="progress-bar" min="0" max="100" value="0">
 					<!-- Progress bar displayed here -->
 				</progress>
+				
+				<!-- Seek Bar -->
+				<!-- <input type="range" id="seek-bar" value="0"> -->
 			</div>
 
 			<!-- Play / Pause button -->
@@ -193,6 +213,7 @@
 
 			<!-- Full Screen button -->
 			<img id="fullScreen" src="icons/fullscreen-icon.png" alt="Full screen arrows" />
+
 
 			<!-- Button Controls -->
 			<div id="button-controls">
