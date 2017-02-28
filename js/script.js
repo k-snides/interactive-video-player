@@ -28,6 +28,12 @@ function init() {
 	// Sets volume at half
 	video.volume = .5;
 
+	
+
+
+
+
+
 	console.log('testies');
 
 
@@ -164,7 +170,7 @@ function init() {
 			end       = parseFloat(dataEnd);
 			
 			if (theCurrentTime >= start && theCurrentTime <= end) {
-				transcriptElements[i].className = "hilite";
+				transcriptElements[i].className = "highlight";
 			}
 			else {
 				transcriptElements[i].className = "";

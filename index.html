@@ -7,177 +7,7 @@
 		<title>Interactive Video Player</title>
 
 		<!-- CSS -->
-		<!-- <link rel="stylesheet" href="style.css" /> -->
-
-		<!-- Temporary CSS below -->
-		<style>
-			img {
-				background-color: orange;
-				padding: 2px;
-			}
-
-			button {
-				background: transparent;
-				display: inline-block;
-				padding: 10px;
-				font-size: 2em;
-				/*border: none;*/
-			}
-			button:hover {
-				
-			}
-
-			.hilite {
-	      color: orange;
-	    }
-
-			p {
-				display: inline;
-			}
-
-			/*cc button*/
-			.onoffswitch {
-		    position: relative;
-		    width: 60px;
-		    -webkit-user-select:none;
-		    -moz-user-select:none;
-		    -ms-user-select: none;
-			}
-			.onoffswitch-checkbox {
-			    display: none;
-			}
-			.onoffswitch-label {
-			    display: block;
-			    overflow: hidden;
-			    cursor: pointer;
-			    border: 2px solid #999999;
-			    border-radius: 20px;
-			}
-			.onoffswitch-inner {
-			    display: block;
-			    width: 200%;
-			    margin-left: -100%;
-			    transition: margin 0.3s ease-in 0s;
-			}
-			.onoffswitch-inner:before, .onoffswitch-inner:after {
-			    display: block;
-			    float: left;
-			    width: 50%;
-			    height: 20px;
-			    padding: 0;
-			    line-height: 20px;
-			    font-size: 14px;
-			    color: white;
-			    font-family: Trebuchet, Arial, sans-serif;
-			    font-weight: bold;
-			    box-sizing: border-box;
-			}
-			.onoffswitch-inner:before {
-			    content: "ON";
-			    padding-left: 6px;
-			    background-color: #FAC414;
-			    color: #FFFFFF;
-			}
-			.onoffswitch-inner:after {
-			    content: "OFF";
-			    padding-right: 6px;
-			    background-color: #EEEEEE;
-			    color: #999999;
-			    text-align: right;
-			}
-			.onoffswitch-switch {
-			    display: block;
-			    width: 20px;
-			    margin: 0px;
-			    background: #FFFFFF;
-			    position: absolute;
-			    top: 0; bottom: 0;
-			    right: 38px;
-			    border: 2px solid #999999;
-			    border-radius: 20px;
-			    transition: all 0.3s ease-in 0s; 
-			}
-
-			.onoffswitch-switch:before {
-			    content: "cc";
-			    letter-spacing: 0.05em;
-			    color: orange;
-			    font-size: 1.2em;
-			    position: relative;
-			    top: -4px;
-			    left: 1px;
-			}
-
-			.onoffswitch-checkbox:checked + .onoffswitch-label .onoffswitch-inner {
-			    margin-left: 0;
-			}
-			.onoffswitch-checkbox:checked + .onoffswitch-label .onoffswitch-switch {
-			    right: 0px; 
-			}
-
-			#transcript p:hover {
-				cursor: pointer;
-				background-color: #eee;
-			}
-
-			#stop div {
-				width: 5px;
-				height: 5px;
-				background-color: #000;
-				padding: 10px;
-			}
-
-			/*progress bars*/
-			#progress-buffer-bar {
-				position: relative;
-			}
-
-			.buffered,
-			#progress-bar {
-				position: absolute;
-			}
-
-			progress[value] {
-				-webkit-appearance: none;
-				   appearance: none;
-			    width: 1300px;
-			}
-
-			/* progress background */
-			progress[value]::-webkit-progress-bar {
-				background-color: transparent;
-				border-radius: 10px;
-				box-shadow: 0 2px 5px rgba(0, 0, 0, 0.25) inset;
-				height: 8px;
-			}
-			/* progress value */
-			progress[value]::-webkit-progress-value {
-				border-radius: 10px;
-			  background-color: orange;
-			  height: 8px;
-			}
-
-			.buffered {
-			  background: rgba(250, 250, 250, 0.2);
-			  border-radius: 10px;
-			  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.25) inset;
-			  height: 8px;
-			  width: 1300px;  
-			}
-
-			#buffered-amount {
-			  display: block;
-			  height: 100%;
-			  background-color: rgba(200, 200, 200, 0.7);
-			  width: 0; 
-			}
-
-			#box {
-				border: 3px solid red;
-				padding: 10px;
-				display: none;
-			}
-		</style>
+		<link rel="stylesheet" href="css/style.css" />	
 	</head>
 	<body>
 		
@@ -200,9 +30,6 @@
 				<progress id="progress-bar" min="0" max="100" value="0">
 					<!-- Progress bar displayed here -->
 				</progress>
-				
-				<!-- Seek Bar -->
-				<!-- <input type="range" id="seek-bar" value="0"> -->
 			</div>
 
 			<!-- Play / Pause button -->
@@ -253,6 +80,14 @@
 			    </label>
 				</div>
 			</div>
+		</div><!-- /.wrapper -->
+
+			<!-- gray slope background -->
+			<div id="gray-slope">
+				<!-- gray slope bg here -->
+			</div>
+
+		<div class="wrapper">
 
 			<!-- Transcript -->
 			<div id="transcript">
@@ -306,7 +141,11 @@
 				</p>
 			</div>
 
+			<div id="box">
+				<!-- box shows for testing hover on volume -->
+			</div>
 		</div><!-- /.wrapper -->
+		
 
 		<!-- JavaScript & jQuery -->
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
