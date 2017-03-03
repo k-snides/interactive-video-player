@@ -26,8 +26,8 @@ video {
 }
 
 img {
-	background-color: orange;
-	padding: 2px;
+	/*background-color: orange;*/
+	/*padding: 2px;*/
 }
 
 
@@ -117,7 +117,7 @@ button:hover {
 
 .onoffswitch-switch:before {
     content: "cc";
-    letter-spacing: 0.05em;
+    /*letter-spacing: 0.05em;*/
     color: orange;
     font-size: 1.2em;
     position: relative;
@@ -144,21 +144,31 @@ button:hover {
 	padding: 10px;
 }
 
+#videoBox {
+	border: 1px dashed blue;
+	position: relative;
+	
+}
+
+#theVideo {
+	
+}
+
 /* --- Progress Bars --- */
 #progress-buffer-bar {
-	position: relative;
+	
 }
 
 .buffered,
 #progress-bar {
 	position: absolute;
+  top: 87%;
 }
 
 progress[value] {
 	-webkit-appearance: none;
 	   appearance: none;
-    /*width: 1300px;*/
-    width: 50%;
+	width: 100%;
 }
 
 /* --- progress background --- */
@@ -181,7 +191,7 @@ progress[value]::-webkit-progress-value {
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.25) inset;
   height: 8px;
   /*width: 1300px;*/
-  width: 50%;
+  width: 100%;
 }
 
 #buffered-amount {
@@ -190,6 +200,37 @@ progress[value]::-webkit-progress-value {
   background-color: rgba(200, 200, 200, 0.7);
   width: 0; 
 }
+
+#playPause,
+#muteUnmute,
+#fullScreen,
+#videoTime {
+	position: absolute;
+	top: 92%;
+}
+
+#button-controls {
+	/*border: 1px dotted green;*/
+}
+
+#playPause {
+	left: 1%;
+}
+
+#videoTime {
+	color: #fff;
+	left: 5%;
+	font-size: 1.3em;
+}
+
+#muteUnmute {
+	right: 4%;
+}
+
+#fullScreen {
+	right: 1%;
+}
+
 
 #box {
 	border: 3px solid red;
@@ -224,20 +265,13 @@ progress[value]::-webkit-progress-value {
 }
 
 #gray-slope {
-	background: #eee;
-	/*transform: rotate(-11.2deg);*/
-	padding: 10% 0;
-	/*width: 120%;*/
-	margin: 1% 0 0 -10%;
-	position: relative;
-	z-index: -5;
+	
 }
 
 #transcript {
-	margin-top: -26%;
-	padding: 5%;
+	font-size: 1.3em;
 	line-height: 1.5;
-	font-size: 1.5em;
+	padding: 2% 5%;
 }
 
 

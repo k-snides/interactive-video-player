@@ -13,52 +13,56 @@
 		
 		<div class="wrapper">
 			
-			<!-- Video -->
-			<video preload id="theVideo">
-				<source src="video/video.mp4" type="video/mp4" />
-				<source src="video/video.ogg" type="video/ogg" />
-				<track label="English" kind="subtitles" srclang="en" src="video/captions.vtt" default />
-			</video>
-			
-			<!-- Progress and Buffer bars -->
-			<div id="progress-buffer-bar">
-				<div class="buffered">
-				  <span id="buffered-amount">
-				  	<!-- Buffer/Loading bar displayed here -->
-				  </span>
+			<div id="videoBox">
+				<!-- Video -->
+				<video preload id="theVideo">
+					<source src="video/video.mp4" type="video/mp4" />
+					<source src="video/video.ogg" type="video/ogg" />
+					<track label="English" kind="subtitles" srclang="en" src="video/captions.vtt" default />
+				</video>
+				
+				<!-- Progress and Buffer bars -->
+				<div id="progress-buffer-bar">
+					<div class="buffered">
+					  <span id="buffered-amount">
+					  	<!-- Buffer/Loading bar displayed here -->
+					  </span>
+					</div><!-- /.buffered -->
+					<progress id="progress-bar" min="0" max="100" value="0">
+						<!-- Progress bar displayed here -->
+					</progress>
+				</div><!-- /#progress-buffer-bar -->
+
+				<!-- Play / Pause button -->
+				<img id="playPause" src="icons/play-icon.png" alt="Play button" />
+
+				<!-- Mute / Unmute button -->
+				<img id="muteUnmute" src="icons/volume-on-icon.png" alt="Volume on button" />
+
+				<!-- Full Screen button -->
+				<img id="fullScreen" src="icons/fullscreen-icon.png" alt="Full screen arrows" />
+
+				<!-- Current Time / Duration  -->
+				<div id="videoTime">
+					<span id="videoCurrentTime">
+						<!-- display video current time here -->
+						00:00 / 
+					</span>
+					<span id="vidLength">
+						<!-- display video length here -->
+					</span>
 				</div>
-				<progress id="progress-bar" min="0" max="100" value="0">
-					<!-- Progress bar displayed here -->
-				</progress>
+
+				<!-- Button Controls -->
 			</div>
 
-			<!-- Play / Pause button -->
-			<img id="playPause" src="icons/play-icon.png" alt="Play button" />
-
-			<!-- Mute / Unmute button -->
-			<img id="muteUnmute" src="icons/volume-on-icon.png" alt="Volume on button" />
-
-			<!-- Full Screen button -->
-			<img id="fullScreen" src="icons/fullscreen-icon.png" alt="Full screen arrows" />
-
-
-			<!-- Button Controls -->
 			<div id="button-controls">
 				<div id="progressPercent"></div>
-				
-				<!-- Current Time / Duration  -->
-				<span id="videoCurrentTime">
-					<!-- display video current time here -->
-					00:00 / 
-				</span>
-				<span id="vidLength">
-					<!-- display video length here -->
-				</span>
 
 				<button id="restart">|<<</button>
 				<button id="rewind"><<</button>
 				<button id="slower">
-					<img id="playPause" src="icons/play-icon.png" alt="Play button" />-
+					<img src="icons/play-icon.png" alt="Play button" />-
 				</button>
 				<button id="volumeDown">-</button>
 				<button id="stop">
@@ -66,10 +70,15 @@
 				</button>
 				<button id="volumeUp">+</button>
 				<button id="faster">
-					<img id="playPause" src="icons/play-icon.png" alt="Play button" />+
+					<img src="icons/play-icon.png" alt="Play button" />+
 				</button>
 				<button id="forward">>></button>
 				<button id="videoEnd">>>|</button>
+			</div><!-- /#button-controls -->
+			
+
+
+			
 
 				<!-- cc button -->
 				<div class="onoffswitch">
@@ -79,7 +88,6 @@
 			        <span class="onoffswitch-switch"></span>
 			    </label>
 				</div>
-			</div>
 		</div><!-- /.wrapper -->
 
 			<!-- gray slope background -->

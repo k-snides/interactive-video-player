@@ -22,11 +22,11 @@ $(function() {
 
 
 	// volume hover test
-	$('#volumeUp').hover(function() {
-		$('#box').fadeIn().on("click", function() {
-			$(this).fadeOut();
-		});
-	});
+	// $('#volumeUp').hover(function() {
+	// 	$('#box').fadeIn().on("click", function() {
+	// 		$(this).fadeOut();
+	// 	});
+	// });
 
 	console.log('jquery');
 
