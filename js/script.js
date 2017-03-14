@@ -29,11 +29,6 @@ function init() {
 	video.volume = .5;
 
 	
-
-
-
-
-
 	console.log('testies');
 
 
