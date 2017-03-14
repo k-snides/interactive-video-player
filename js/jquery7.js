@@ -29,26 +29,24 @@ $(function() {
 	// });
 	
 
-	// When mouse enters #videoBox or #button-controls
+	// When mouse enters #videoBox, button-controls drop down,
 	// more controls appear and main controls fadeIn
-	$('#videoBox, #button-controls').on("mouseenter", function() {
-		$('#button-controls').addClass('more-controls');
-		$('.hide-main-controls').fadeIn(600);	
-	});
-
-	// When mouse leaves #videoBox or #button-controls
-	// more controls disappears
-	$('#videoBox, #button-controls').on("mouseleave", function() {
-		$('#button-controls').removeClass('more-controls');	
+	$('#videoBox').on("mouseenter", function() {
+		$('#more-controls').addClass('more-controls-panel');
+		$('#progress-bar, .buffered').removeClass('progress-bottom');
+		$('.hide-main-controls').delay(500).fadeIn(600);	
 	});
 
 	// When mouse leaves #videoBox
-	// main controls fadeOut
+	// main controls fadeOut and progress bars slide down
 	$('#videoBox').on("mouseleave", function() {
+		$('#more-controls').removeClass('more-controls-panel');	
+		$('#progress-bar, .buffered').addClass('progress-bottom');
 		$('.hide-main-controls').fadeOut(600);
 	});
 
 
+	
 	console.log('jquery');
 
 });

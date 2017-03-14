@@ -22,14 +22,11 @@ body {
 
 video {
 	max-width: 100%;
-	box-shadow: 0 14px 16px -6px #000;
 }
 
 img {
 	cursor: pointer;
 }
-
-
 
 .highlight {
   color: orange;
@@ -39,7 +36,7 @@ p {
 	display: inline;
 }
 
-/* --- Buttons --- */
+/* ----- Buttons ----- */
 button {
 	background: transparent;
 	background: rgba(255, 153, 0, 0.7);
@@ -58,7 +55,14 @@ button:hover {
 	background: rgba(255, 153, 0, 1);
 }
 
-/* --- cc button --- */
+#stop div {
+	width: 15px;
+	height: 15px;
+	background-color: #fff;
+	margin: 5px 2px;
+}
+
+/* --- CC Button --- */
 .onoffswitch {
   position: relative;
   width: 60px;
@@ -120,7 +124,6 @@ button:hover {
     border-radius: 20px;
     transition: all 0.3s ease-in 0s; 
 }
-
 .onoffswitch-switch:before {
     content: "cc";
     /*letter-spacing: 0.05em;*/
@@ -130,49 +133,39 @@ button:hover {
     top: -4px;
     left: 1px;
 }
-
 .onoffswitch-checkbox:checked + .onoffswitch-label .onoffswitch-inner {
     margin-left: 0;
 }
 .onoffswitch-checkbox:checked + .onoffswitch-label .onoffswitch-switch {
     right: 0px; 
-}
+}/* --- end CC Button --- */
 
-#transcript p:hover {
-	cursor: pointer;
-	background-color: #ddd;
-}
 
-#stop div {
-	width: 15px;
-	height: 15px;
-	background-color: #fff;
-	margin: 5px 2px;
+
+#progressPercent {
+	color: #fff;
+	font-size: 1.5em;
 }
 
 #videoBox {
 	position: relative;
-	/*border: 1px dashed blue;*/
 }
 
 #theVideo {
-	/*box-shadow: 3px 3px 5px #000;*/
+	box-shadow: 0 14px 16px -6px #000;
 }
 
-/* --- Progress Bars --- */
-#progress-buffer-bar {
-	
-}
-
+/* ----- Progress Bars ----- */
 .buffered,
 #progress-bar {
 	position: absolute;
   top: 87%;
+  transition: .4s ease-in-out .3s;
 }
 
 .progress-bottom {
-	/*top: 98%;*/
-	/*display: none;*/
+	transform: translateY(80px);
+	transition: .4s ease-in-out .3s;
 }
 
 progress[value] {
@@ -200,7 +193,6 @@ progress[value]::-webkit-progress-value {
   border-radius: 10px;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.25) inset;
   height: 8px;
-  /*width: 1300px;*/
   width: 100%;
 }
 
@@ -209,7 +201,7 @@ progress[value]::-webkit-progress-value {
   height: 100%;
   background-color: rgba(200, 200, 200, 0.7);
   width: 0; 
-}
+}/* ----- end Progress Bars ----- */
 
 #playPause,
 #muteUnmute,
@@ -218,81 +210,6 @@ progress[value]::-webkit-progress-value {
 .onoffswitch {
 	position: absolute;
 	top: 92%;
-}
-
-#button-controls {
-	/*background: #eee;*/
-	position: absolute;
-	/*z-index: -100;*/
-	width: 100%;
-	margin: 0 auto;
-	text-align: center;
-	padding: 10px 0;
-	border: 7px double orange;
-	border-radius: 20%;
-	/*box-shadow: 0 3px 5px #000;*/
-	/*transform: translateY(-101px);*/
-	top: -75px;
-	/*left: 25%;*/
-	/*margin-top: 100px;*/
-	opacity: 0.5;
-	
-	transition: .4s ease-in-out .2s;
-}
-
-.more-controls {
-	transform: translateY(100px);
-	/*opacity: 0.5;*/
-	/*position: relative;*/
-	/*z-index: -200;*/
-	
-	transition: .4s ease-in-out;
-}
-
-.hide-main-controls {
-	
-}
-
-/*#button-controls::after {
-	content: '+';
-	font-size: 3em;
-	position: absolute;
-	top: 70px;
-	right: 46%;
-	border: 7px double orange;
-	border-radius: 50%;
-	padding: 0 2%;
-	transform-origin: 50% 50%;
-	
-	transition: .4s ease-in-out;
-}
-#button-controls.special::after {
-	transform: rotate(135deg);
-	transform-origin: 50% 50%;
-	
-	transition: .4s ease-in-out;
-}*/
-
-
-
-#plus {
-	border: 7px double orange;
-	border-radius: 50%;
-	font-size: 3em;
-	position: absolute;
-	top: 100%;
-	left: 44%;
-	padding: 0 2%;
-	transition: .4s ease-in-out;
-	cursor: pointer;
-	z-index: -300;
-	box-shadow: 0 0 5px #000;
-	margin-bottom: 5%;
-}
-
-.close {
-	transform: rotate(45deg);
-	font-size: 3em;
 }
 
 #playPause {
@@ -317,6 +234,33 @@ progress[value]::-webkit-progress-value {
 	right: 1%;
 }
 
+#more-controls {
+	position: absolute;
+	width: 100%;
+	margin: 0 auto;
+	text-align: center;
+	padding: 10px 0;
+	border-radius: 20%;
+	top: -80px;
+	opacity: 0.7;
+	
+	transition: .4s ease-in-out .3s;
+}
+
+.more-controls-panel {
+	transform: translateY(70px);
+
+	transition: .4s ease-in-out;
+}
+
+
+
+
+#transcript p:hover {
+	cursor: pointer;
+	background-color: #ddd;
+}
+
 
 #box {
 	border: 3px solid red;
@@ -324,9 +268,7 @@ progress[value]::-webkit-progress-value {
 	display: none;
 }
 
-.hover-show {
-	/*border: 1px solid purple;*/
-}
+
 
 
 
@@ -362,7 +304,6 @@ progress[value]::-webkit-progress-value {
 	font-size: 1.3em;
 	line-height: 1.5;
 	padding: 2% 5%;
-	/*margin-top: 8%;*/
 }
 
 
