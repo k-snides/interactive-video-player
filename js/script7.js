@@ -10,6 +10,7 @@ function init() {
 	// Global Variables
 	var video         = document.getElementById('theVideo');
 	var playPause     = document.getElementById('playPause');
+	var playPauseOverlay     = document.getElementById('play-pause-overlay');
 	var muteUnmute    = document.getElementById('muteUnmute');
 	var restart       = document.getElementById('restart');
 	var videoEnd      = document.getElementById('videoEnd');
@@ -28,7 +29,6 @@ function init() {
 	// Sets volume at half
 	video.volume = .5;
 
-	
 	console.log('testies');
 
 
@@ -73,10 +73,12 @@ function init() {
 		 	video.playbackRate = 1;
 		 	playPause.setAttribute('src', 'icons/pause-icon.png');
 		 	playPause.setAttribute('alt', 'Pause button');
+		 	playPauseOverlay.style.display = "none";
 		}
 		// otherwise if video is playing, pause video and display play icon
 		else { 
 	    pause();
+	    playPauseOverlay.style.display = "block";
 		}
 	};
 
@@ -206,9 +208,15 @@ function init() {
 
 	// ----- Event Listeners ----- //
 	
+	// Video plays or pauses on click
+	video.addEventListener("click", playOrPause, false);
+
+	// Video plays on click of play button overlay
+	playPauseOverlay.addEventListener("click", playOrPause, false);
+	
 	// Buffer/Loading progress bar
 	video.addEventListener("progress", bufferingProgressBar, false);
-
+	
 	// When video ends, video pauses and displays play icon
 	video.addEventListener("ended", function() {
 		pause();

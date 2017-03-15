@@ -155,6 +155,17 @@ button:hover {
 	box-shadow: 0 14px 16px -6px #000;
 }
 
+#play-pause-overlay {
+	background: url('../icons/play-icon.png') center center no-repeat;
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	transform: translate(-50%, -50%);
+	border: 5px solid #fff;
+	padding: 4%;
+	border-radius: 50%;
+}
+
 /* ----- Progress Bars ----- */
 .buffered,
 #progress-bar {
@@ -296,9 +307,12 @@ progress[value]::-webkit-progress-value {
 	max-width: 1280px;
 }
 
-#gray-slope {
-	
-}
+/*#gray-slope {
+	background: red;
+	position: relative;
+	height: 100px;
+	width: 100px;
+}*/
 
 #transcript {
 	font-size: 1.3em;
