@@ -29,6 +29,9 @@ function init() {
 	// Sets volume at half
 	video.volume = .5;
 
+	
+
+
 	console.log('testies');
 
 
@@ -57,6 +60,7 @@ function init() {
 		video.pause();
 		playPause.setAttribute('src', 'icons/play-icon.png');
 		playPause.setAttribute('alt', 'Play button');
+		playPauseOverlay.style.display = "block";
 	};
 
 	

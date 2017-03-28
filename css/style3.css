@@ -62,6 +62,12 @@ button:hover {
 	margin: 5px 2px;
 }
 
+#more-controls-button {
+	border-radius: 0;
+	width: 300px;
+	margin: 3% auto;
+}
+
 /* --- CC Button --- */
 .onoffswitch {
   position: relative;
@@ -175,7 +181,8 @@ button:hover {
 }
 
 .progress-bottom {
-	transform: translateY(80px);
+	/*transform: translateY(80px);*/
+	top: 90%;
 	transition: .4s ease-in-out .3s;
 }
 
@@ -274,9 +281,19 @@ progress[value]::-webkit-progress-value {
 
 
 #box {
-	border: 3px solid red;
-	padding: 10px;
-	display: none;
+	/*position: absolute;*/
+	width: 200px;
+	height: 400px;
+	/*left: 50%;*/
+	/*top: 2%;*/
+	border: 2px solid red;
+	/*z-index: -2000;*/
+}
+
+.level {
+	height: 20px;
+	width: 100px;
+	background: orange;
 }
 
 
