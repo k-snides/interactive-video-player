@@ -7,7 +7,7 @@
 		<title>Interactive Video Player</title>
 
 		<!-- CSS -->
-		<link rel="stylesheet" href="css/style3.css" />	
+		<link rel="stylesheet" href="css/style2.css" />	
 	</head>
 	<body>
 		
@@ -17,7 +17,8 @@
 				<!-- Video -->
 				<video preload id="theVideo">
 					<source src="video/video.mp4" type="video/mp4" />
-					<source src="video/video.ogg" type="video/ogg" />
+					<source src="video/video.og
+					g" type="video/ogg" />
 					<track label="English" kind="subtitles" srclang="en" src="video/captions.vtt" default />
 				</video>
 
@@ -86,41 +87,40 @@
 					<button id="videoEnd">>>|</button>
 				</div><!-- /#more-controls -->
 
+				<div id="volume-side-controls">
+					<div id="vol-level">VOL</div>
+					<div class="level"></div>
+					<div class="level"></div>
+					<div class="level"></div>
+					<div class="level"></div>
+					<div class="level"></div>
+					<div class="level"></div>
+					<div class="level"></div>
+					<div class="level"></div>
+					<div class="level"></div>
+					<div class="level"></div>
+				</div>
 				
 			</div><!-- /#videoBox -->
 			
 		</div><!-- /.wrapper -->
 
-				<!-- <div id="box"> -->
-					<!-- <div class="level"></div>
-					<div class="level"></div>
-					<div class="level"></div>
-					<div class="level"></div>
-					<div class="level"></div>
-					<div class="level"></div>
-					<div class="level"></div>
-					<div class="level"></div>
-					<div class="level"></div>
-					<div class="level"></div> -->
-				<!-- </div> -->
 			
 		
 		
 			
 
 
-			
+	
+		<div class="center">
+			<button id="more-controls-button">More Controls</button>
+		</div>
 
-				
-		<button id="more-controls-button">More Controls</button>
 
-			<!-- gray slope background -->
-			<!-- <div id="gray-slope"> -->
-				<!-- gray slope bg here -->
-			<!-- </div> -->
+		<div class="wrapper perspective">
 
-		<div class="wrapper">
-
+		<!-- gray slope background -->
+		<div id="gray-slope">
 
 			<!-- Transcript -->
 			<div id="transcript">
@@ -174,13 +174,15 @@
 				</p>
 			</div><!-- /#transcript -->
 
-			
+			<!-- gray slope bg here -->
+		</div><!-- /#gray-slope -->
+
 		</div><!-- /.wrapper -->
 		
 
 		<!-- JavaScript & jQuery -->
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-		<script src="js/jquery8.js"></script>
+		<script src="js/jquery2.js"></script>
 		<script src="js/script8.js"></script>
 	</body>
 </html>

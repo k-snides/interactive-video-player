@@ -28,11 +28,47 @@ function init() {
 
 	// Sets volume at half
 	video.volume = .5;
+	// console.log(video.volume.toFixed(2));
+	// var videoVolume = video.volume;
+	// videoVolume = .1;
+	// console.log('videoVol: ' + videoVolume)
+
+
+	var currentVolume;
+	var videoVolume;
 
 	
 
 
+	var visual = document.querySelectorAll('.level');
+	
+	
+
 	console.log('testies');
+
+	var visualControlsIndicator = function(visualLevel) {
+
+		console.log('visualControlsIndicator called');
+		console.log('visualControlsIndicator: ' + visualLevel.toFixed(1));
+
+		if (visualLevel >= 9) {
+			visualLevel = 9;
+		}
+
+		if (visualLevel <= 1) {
+			visualLevel = 1;
+		}
+
+		var visualLevelRounded = Math.round(visualLevel);
+
+		for (var i = 0; i < visualLevelRounded; i++) {
+			visual[i].style.backgroundColor = "orange";
+			console.log('visual array: ' + i);
+		}
+
+		visual[i].style.backgroundColor = "transparent";
+
+	};
 
 
 
@@ -274,25 +310,37 @@ function init() {
 	// Turns volume down 10%
 	volumeDown.addEventListener("click", function() {
 		video.volume -= 0.1;
-		if (video.volume <= 0.1) {
+		video.volume.toFixed(1);
+		console.log('volume at button press: ' + video.volume.toFixed(1))
+
+		currentVolume = video.volume * 10;
+		visualControlsIndicator(currentVolume);
+
+		if (video.volume.toFixed(1) <= 0.1) {
 			video.volume = 0.1;
 		}
 		if (video.muted) {
 			unmuteWithVolumeButtons();
 		}
-		console.log(video.volume);
+		console.log(video.volume.toFixed(1));
 	}, false);
 
 	// Turns volume up 10%
 	volumeUp.addEventListener("click", function() {
 		video.volume += 0.1;
-		if (video.volume >= 0.9) {
+		video.volume.toFixed(1);
+		console.log('volume at button press: ' + video.volume.toFixed(1))
+
+		currentVolume = video.volume * 10;
+		visualControlsIndicator(currentVolume);
+
+		if (video.volume.toFixed(1) >= 0.9) {
 			video.volume = 0.9;
 		}
 		if (video.muted) {
 			unmuteWithVolumeButtons();			
 		}
-		console.log(video.volume);
+		console.log(video.volume.toFixed(1));
 	}, false);
 	
 	// Slows down play back speed by 10%;

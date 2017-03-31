@@ -30,10 +30,19 @@ img {
 
 .highlight {
   color: orange;
+  text-shadow: 1px 1px 1px white;
 }
 
 p {
 	display: inline;
+}
+
+.center {
+	text-align: center;
+}
+
+.perspective {
+	perspective: 300px;
 }
 
 /* ----- Buttons ----- */
@@ -62,10 +71,13 @@ button:hover {
 	margin: 5px 2px;
 }
 
+
+
 #more-controls-button {
 	border-radius: 0;
 	width: 300px;
 	margin: 3% auto;
+	text-align: center;
 }
 
 /* --- CC Button --- */
@@ -159,6 +171,7 @@ button:hover {
 
 #theVideo {
 	box-shadow: 0 14px 16px -6px #000;
+	position: relative;
 }
 
 #play-pause-overlay {
@@ -181,8 +194,7 @@ button:hover {
 }
 
 .progress-bottom {
-	/*transform: translateY(80px);*/
-	top: 90%;
+	transform: translateY(80px);
 	transition: .4s ease-in-out .3s;
 }
 
@@ -266,7 +278,7 @@ progress[value]::-webkit-progress-value {
 }
 
 .more-controls-panel {
-	transform: translateY(70px);
+	transform: translateY(80px);
 
 	transition: .4s ease-in-out;
 }
@@ -280,23 +292,43 @@ progress[value]::-webkit-progress-value {
 }
 
 
-#box {
-	/*position: absolute;*/
-	width: 200px;
-	height: 400px;
-	/*left: 50%;*/
-	/*top: 2%;*/
-	border: 2px solid red;
-	/*z-index: -2000;*/
+#volume-side-controls,
+#speed-side-controls {
+  border: 2px solid white;
+  height: 160px;
+  width: 50px;
+  position: absolute;
+  top: 37%;
+  margin: 0 auto;
+  transform: rotate(180deg);
+}
+
+#volume-side-controls {
+  right: 0%;
+}
+#speed-side-controls {
+  left: 0%;
+}
+
+#vol-level,
+#speed-level {
+	transform: rotate(-180deg);
+	color: white;
+	text-align: center;
+	text-shadow: 1px 1px 2px gray;
 }
 
 .level {
-	height: 20px;
-	width: 100px;
-	background: orange;
+  width: 40px;
+  height: 10px;
+  background: transparent;
+  margin: 5px auto;
+  border-radius: 20px;
+  opacity: .7;
 }
-
-
+/*.level:nth-child(-1n + 4) {
+  background: orange;
+}*/
 
 
 
@@ -324,17 +356,17 @@ progress[value]::-webkit-progress-value {
 	max-width: 1280px;
 }
 
-/*#gray-slope {
-	background: red;
-	position: relative;
-	height: 100px;
-	width: 100px;
-}*/
+#gray-slope {
+	background: rgba(128, 128, 128, 0.2);
+	transform: rotateX(0deg);
+	
+}
 
 #transcript {
 	font-size: 1.3em;
 	line-height: 1.5;
 	padding: 2% 5%;
+	transform: rotateX(0deg);
 }
 
 

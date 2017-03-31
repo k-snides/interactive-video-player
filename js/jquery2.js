@@ -8,6 +8,8 @@ $(function() {
 	// moreControlsTimeout used for set and clear Timeout
 	var moreControlsTimeout;
 
+	
+
 	// Hides #more-controls after 7 seconds if not touched
 	function noTouchMoreControls() {
 		moreControlsTimeout = setTimeout(moreControlsHide, 7000);
@@ -128,13 +130,8 @@ $(function() {
 		console.log('worky poo');
 	});
 
-
+// $(".level:nth-child(-1n + 8)").css("background-color", "orange");
 	
-
-
-
-
-
 
 
 	console.log('jquery');
