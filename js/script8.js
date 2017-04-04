@@ -8,45 +8,49 @@ window.onload = init;
 function init() {
 	
 	// Global Variables
-	var video         = document.getElementById('theVideo');
-	var playPause     = document.getElementById('playPause');
+	var video                = document.getElementById('theVideo');
+	var playPause            = document.getElementById('playPause');
 	var playPauseOverlay     = document.getElementById('play-pause-overlay');
-	var muteUnmute    = document.getElementById('muteUnmute');
-	var restart       = document.getElementById('restart');
-	var videoEnd      = document.getElementById('videoEnd');
-	var rewind        = document.getElementById('rewind');
-	var forward       = document.getElementById('forward');
-	var volumeUp      = document.getElementById('volumeUp');
-	var stop				  = document.getElementById('stop');
-	var volumeDown    = document.getElementById('volumeDown');
-	var slower        = document.getElementById('slower');
-	var faster        = document.getElementById('faster');
-	var fullScreen    = document.getElementById('fullScreen');
-	var cc            = document.getElementById('cc');
+	var muteUnmute           = document.getElementById('muteUnmute');
+	var restart              = document.getElementById('restart');
+	var videoEnd             = document.getElementById('videoEnd');
+	var rewind               = document.getElementById('rewind');
+	var forward              = document.getElementById('forward');
+	var volumeUp             = document.getElementById('volumeUp');
+	var stop				         = document.getElementById('stop');
+	var volumeDown           = document.getElementById('volumeDown');
+	var slower               = document.getElementById('slower');
+	var faster               = document.getElementById('faster');
+	var fullScreen           = document.getElementById('fullScreen');
+	var cc                   = document.getElementById('cc');
 
-	var transcriptElements = document.getElementsByTagName('p');
+	// Gets all the p elements for transcript highlighting
+	var transcriptElements   = document.getElementsByTagName('p');
+
+	// Selects volume and speed class for visual indication
+	var visualVolume = document.querySelectorAll('.vol-level');
+	var visualSpeed  = document.querySelectorAll('.spd-level');
 
 	// Sets volume at half
 	video.volume = .5;
-	// console.log(video.volume.toFixed(2));
-	// var videoVolume = video.volume;
-	// videoVolume = .1;
-	// console.log('videoVol: ' + videoVolume)
+	
+	
 
 
 	var currentVolume;
-	var videoVolume;
+	var currentSpeed;
+	
 
 	
 
 
-	var visual = document.querySelectorAll('.level');
-	
-	
+
+	console.log(visualVolume);
+
 
 	console.log('testies');
 
-	var visualControlsIndicator = function(visualLevel) {
+	var visualControlsIndicator = function(visualLevel, visual) {
 
 		console.log('visualControlsIndicator called');
 		console.log('visualControlsIndicator: ' + visualLevel.toFixed(1));
@@ -307,14 +311,18 @@ function init() {
 		video.currentTime += 10;
 	}, false);
 
+
+
+
+
 	// Turns volume down 10%
 	volumeDown.addEventListener("click", function() {
 		video.volume -= 0.1;
 		video.volume.toFixed(1);
-		console.log('volume at button press: ' + video.volume.toFixed(1))
+		console.log('volume at button press: ' + video.volume.toFixed(1));
 
 		currentVolume = video.volume * 10;
-		visualControlsIndicator(currentVolume);
+		visualControlsIndicator(currentVolume, visualVolume);
 
 		if (video.volume.toFixed(1) <= 0.1) {
 			video.volume = 0.1;
@@ -329,10 +337,10 @@ function init() {
 	volumeUp.addEventListener("click", function() {
 		video.volume += 0.1;
 		video.volume.toFixed(1);
-		console.log('volume at button press: ' + video.volume.toFixed(1))
+		console.log('volume at button press: ' + video.volume.toFixed(1));
 
 		currentVolume = video.volume * 10;
-		visualControlsIndicator(currentVolume);
+		visualControlsIndicator(currentVolume, visualVolume);
 
 		if (video.volume.toFixed(1) >= 0.9) {
 			video.volume = 0.9;
@@ -342,28 +350,53 @@ function init() {
 		}
 		console.log(video.volume.toFixed(1));
 	}, false);
+
+
+
+
+
+
 	
 	// Slows down play back speed by 10%;
 	slower.addEventListener("click", function() {
 		video.playbackRate -= .1;
 
+		video.playbackRate.toFixed(1);
+		console.log('speed at button press: ' + video.playbackRate.toFixed(1));
+
+		currentSpeed = (video.playbackRate * 10) - 5;
+		visualControlsIndicator(currentSpeed, visualSpeed);
+
 		// Video loses audio below 0.5 playbackRate and freezes
 		if (video.playbackRate <= 0.5) {
 			video.playbackRate = 0.5;
 		}
-		console.log(video.playbackRate);
+		console.log(video.playbackRate.toFixed(1));
 	}, false);
 
 	// Speeds up play back speed by 10%;
 	faster.addEventListener("click", function() {
 		video.playbackRate += .1;
+
+		video.playbackRate.toFixed(1);
+		console.log('speed at button press: ' + video.playbackRate.toFixed(1));
+
+		currentSpeed = (video.playbackRate * 10) - 5;
+		visualControlsIndicator(currentSpeed, visualSpeed);
 		
-		// playbackRate at 2.0 is double original speed
-		if (video.playbackRate >= 2.0) {
-			video.playbackRate = 2.0;
+		// playbackRate is capped at 1.5
+		// for visual indicator
+		if (video.playbackRate >= 1.5) {
+			video.playbackRate = 1.5;
 		}
-		console.log(video.playbackRate);
+		console.log(video.playbackRate.toFixed(1));
 	}, false);
+
+
+
+
+
+
 
 	// Video to Full Screen mode
 	fullScreen.addEventListener("click", function() {
@@ -378,18 +411,7 @@ function init() {
     }
 	}, false);
 
-	//  ------> TODO: UNCOMMENT WHEN DONE AND TWEAK <-------
-	// Hide video controls on mouseout
-	// video.addEventListener("mouseout", function() {
-	// 	var buttonControls = document.getElementById('button-controls');
-	// 	buttonControls.style.display = 'none';
-	// }, false);
-
-	// Display video controls on mouseover
-	// video.addEventListener("mouseover", function() {
-	// 	var buttonControls = document.getElementById('button-controls');
-	// 	buttonControls.style.display = 'block';
-	// }, false);
+	
 
 	// Display Progress bar
 	video.addEventListener("timeupdate", updateProgressBar, false);

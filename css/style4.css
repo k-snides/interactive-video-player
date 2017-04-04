@@ -1,0 +1,381 @@
+/* ===================================================
+----- Mobile First -----
+=================================================== */
+
+/* ----- GENERAL STYLES ----- */
+
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+body {
+	background: #fff;
+	/*color: #fff*/
+}
+
+.wrapper {
+	width: 90%;
+	margin: 0 auto;
+}
+
+video {
+	max-width: 100%;
+}
+
+img {
+	cursor: pointer;
+}
+
+.highlight {
+  color: orange;
+  text-shadow: 1px 1px 1px white;
+}
+
+p {
+	display: inline;
+}
+
+.center {
+	text-align: center;
+}
+
+.perspective {
+	perspective: 300px;
+}
+
+/* ----- Buttons ----- */
+button {
+	background: transparent;
+	background: rgba(255, 153, 0, 0.7);
+	display: inline-block;
+	padding: 0 1%;
+	font-size: 2em;
+	border: 2px solid orange;
+	border-radius: 20%;
+	box-shadow: 1px 1px 2px orange;
+	color: #fff;
+	margin: 0 0.5%;
+	cursor: pointer;
+	outline: none;
+}
+button:hover {
+	background: rgba(255, 153, 0, 1);
+}
+
+#stop div {
+	width: 15px;
+	height: 15px;
+	background-color: #fff;
+	margin: 5px 2px;
+}
+
+
+
+#more-controls-button {
+	border-radius: 0;
+	width: 300px;
+	margin: 3% auto;
+	text-align: center;
+}
+
+/* --- CC Button --- */
+.onoffswitch {
+  position: relative;
+  width: 60px;
+  -webkit-user-select:none;
+  -moz-user-select:none;
+  -ms-user-select: none;
+}
+.onoffswitch-checkbox {
+    display: none;
+}
+.onoffswitch-label {
+    display: block;
+    overflow: hidden;
+    cursor: pointer;
+    border: 2px solid #999999;
+    border-radius: 20px;
+}
+.onoffswitch-inner {
+    display: block;
+    width: 200%;
+    margin-left: -100%;
+    transition: margin 0.3s ease-in 0s;
+}
+.onoffswitch-inner:before, .onoffswitch-inner:after {
+    display: block;
+    float: left;
+    width: 50%;
+    height: 20px;
+    padding: 0;
+    line-height: 20px;
+    font-size: 14px;
+    color: white;
+    font-family: Trebuchet, Arial, sans-serif;
+    font-weight: bold;
+    box-sizing: border-box;
+}
+.onoffswitch-inner:before {
+    content: "ON";
+    padding-left: 6px;
+    background-color: #FAC414;
+    color: #FFFFFF;
+}
+.onoffswitch-inner:after {
+    content: "OFF";
+    padding-right: 6px;
+    background-color: #EEEEEE;
+    color: #999999;
+    text-align: right;
+}
+.onoffswitch-switch {
+    display: block;
+    width: 20px;
+    margin: 0px;
+    background: #FFFFFF;
+    position: absolute;
+    top: 0; bottom: 0;
+    right: 38px;
+    border: 2px solid #999999;
+    border-radius: 20px;
+    transition: all 0.3s ease-in 0s; 
+}
+.onoffswitch-switch:before {
+    content: "cc";
+    /*letter-spacing: 0.05em;*/
+    color: orange;
+    font-size: 1.2em;
+    position: relative;
+    top: -4px;
+    left: 1px;
+}
+.onoffswitch-checkbox:checked + .onoffswitch-label .onoffswitch-inner {
+    margin-left: 0;
+}
+.onoffswitch-checkbox:checked + .onoffswitch-label .onoffswitch-switch {
+    right: 0px; 
+}/* --- end CC Button --- */
+
+
+
+#progressPercent {
+	color: #fff;
+	font-size: 1.5em;
+}
+
+#videoBox {
+	position: relative;
+}
+
+#theVideo {
+	box-shadow: 0 14px 16px -6px #000;
+	position: relative;
+}
+
+#play-pause-overlay {
+	background: url('../icons/play-icon.png') center center no-repeat;
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	transform: translate(-50%, -50%);
+	border: 5px solid #fff;
+	padding: 4%;
+	border-radius: 50%;
+}
+
+/* ----- Progress Bars ----- */
+.buffered,
+#progress-bar {
+	position: absolute;
+  top: 87%;
+  transition: .4s ease-in-out .3s;
+}
+
+.progress-bottom {
+	transform: translateY(80px);
+	transition: .4s ease-in-out .3s;
+}
+
+progress[value] {
+	-webkit-appearance: none;
+	   appearance: none;
+	width: 100%;
+}
+
+/* --- progress background --- */
+progress[value]::-webkit-progress-bar {
+	background-color: transparent;
+	border-radius: 10px;
+	box-shadow: 0 2px 5px rgba(0, 0, 0, 0.25) inset;
+	height: 8px;
+}
+/* --- progress value --- */
+progress[value]::-webkit-progress-value {
+	border-radius: 10px;
+  background-color: orange;
+  height: 8px;
+}
+
+.buffered {
+  background: rgba(250, 250, 250, 0.2);
+  border-radius: 10px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.25) inset;
+  height: 8px;
+  width: 100%;
+}
+
+#buffered-amount {
+  display: block;
+  height: 100%;
+  background-color: rgba(200, 200, 200, 0.7);
+  width: 0; 
+}/* ----- end Progress Bars ----- */
+
+#playPause,
+#muteUnmute,
+#fullScreen,
+#videoTime,
+.onoffswitch {
+	position: absolute;
+	top: 92%;
+}
+
+#playPause {
+	left: 1%;
+}
+
+#videoTime {
+	color: #fff;
+	left: 5%;
+	font-size: 1.3em;
+}
+
+.onoffswitch {
+	right: 7%;
+}
+
+#muteUnmute {
+	right: 4%;
+}
+
+#fullScreen {
+	right: 1%;
+}
+
+#more-controls {
+	position: absolute;
+	width: 100%;
+	margin: 0 auto;
+	text-align: center;
+	padding: 10px 0;
+	border-radius: 20%;
+	top: -80px;
+	opacity: 0.7;
+	
+	transition: .4s ease-in-out .3s;
+}
+
+.more-controls-panel {
+	transform: translateY(80px);
+
+	transition: .4s ease-in-out;
+}
+
+
+
+
+#transcript p:hover {
+	cursor: pointer;
+	background-color: #ddd;
+}
+
+
+#volume-side-controls,
+#speed-side-controls {
+  border: 2px solid #fff;
+  border-radius: 10px;
+  height: 160px;
+  width: 50px;
+  position: absolute;
+  top: 37%;
+  margin: 0 auto;
+  transform: rotate(180deg);
+}
+
+#volume-side-controls {
+  right: 0%;
+}
+#speed-side-controls {
+  left: 0%;
+}
+
+#volume-level,
+#speed-level {
+	transform: rotate(-180deg);
+	color: white;
+	text-align: center;
+	text-shadow: 1px 1px 2px gray;
+}
+
+.vol-level,
+.spd-level {
+  width: 40px;
+  height: 10px;
+  background: transparent;
+  margin: 5px auto;
+  border-radius: 20px;
+  opacity: .7;
+}
+/*.level:nth-child(-1n + 4) {
+  background: orange;
+}*/
+
+
+
+
+
+
+
+
+/* ===================================================
+----- Tablet devices (tablets, 768px and up) -----
+=================================================== */
+	
+
+
+
+
+
+
+
+/* ===================================================
+----- Desktop screens (1024px and up) -----
+=================================================== */
+	
+.wrapper {
+	max-width: 1280px;
+}
+
+#gray-slope {
+	background: rgba(128, 128, 128, 0.2);
+	transform: rotateX(0deg);
+	
+}
+
+#transcript {
+	font-size: 1.3em;
+	line-height: 1.5;
+	padding: 2% 5%;
+	transform: rotateX(0deg);
+}
+
+
+
+
+
+
+
+
+
