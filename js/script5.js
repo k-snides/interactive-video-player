@@ -33,6 +33,7 @@ function init() {
 
 	// Sets volume at half
 	video.volume = .5;
+	console.log('vol at start: ' + video.volume);
 	
 	
 
@@ -41,11 +42,7 @@ function init() {
 	var currentSpeed;
 	
 
-	
 
-
-
-	console.log(visualVolume);
 
 
 	console.log('testies');

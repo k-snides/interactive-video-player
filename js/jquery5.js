@@ -4,10 +4,15 @@ $(function() {
 	var $videoBox 					= $('#videoBox');
 	var $theVideo 					= $('#theVideo');
 	var $moreControlsbutton = $('#more-controls-button');
+	var $sideVolume         = $('#volume-side-controls');
+	var $sideSpeed          = $('#speed-side-controls');
+
+	$sideVolume.hide();
+	$sideSpeed.hide();
 
 	// moreControlsTimeout used for set and clear Timeout
 	var moreControlsTimeout;
-
+	var sideVolumeTimeout;
 	
 
 	// Hides #more-controls after 7 seconds if not touched
@@ -81,6 +86,34 @@ $(function() {
 
 
 
+	var timer;
+
+	var showVolumeAndSpeedGuage = function(guage) {
+
+			timer = setTimeout(function() {
+				guage.fadeOut(500);
+				console.log('5000');
+			}, 5000);
+
+			guage.fadeIn();
+
+			clearTimeout(timer);
+			
+			if (guage.is(":visible")) {
+				timer = setTimeout(function() {
+					guage.fadeOut(500);
+					console.log('2000');
+				}, 2000);
+			}
+	};
+	
+	$('#volumeUp, #volumeDown').on("click", function() {
+		showVolumeAndSpeedGuage($sideVolume);
+	});
+
+	$('#faster, #slower').on("click", function() {
+		showVolumeAndSpeedGuage($sideSpeed);
+	});
 
 
 
@@ -92,12 +125,6 @@ $(function() {
 		
 		// Shows the #more-controls buttons
 		moreControlsShow();
-
-		
-		
-
-
-		
 
 		// Sets timeout so #more-controls will hide
 		noTouchMoreControls();
@@ -117,12 +144,10 @@ $(function() {
 		});
 	});
 
-	// volume click test
-	// $('#volumeUp').click(function() {
-	// 	$('#box').fadeIn().on("click", function() {
-	// 		$(this).fadeOut();
-	// 	});
-	// });
+	
+
+
+
 
 	$theVideo.off().on("click", function() {
 		yesTouchMoreControls();
@@ -130,10 +155,10 @@ $(function() {
 		console.log('worky poo');
 	});
 
-// $(".level:nth-child(-1n + 8)").css("background-color", "orange");
+
+
+
 	
-
-
 
 
 
