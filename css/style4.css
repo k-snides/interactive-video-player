@@ -242,7 +242,7 @@ progress[value]::-webkit-progress-value {
 #videoTime,
 .onoffswitch {
 	position: absolute;
-	top: 2%;
+	bottom: 82%;
 	
 }
 
@@ -431,7 +431,6 @@ progress[value]::-webkit-progress-value {
 	#fullScreen,
 	#videoTime,
 	.onoffswitch {
-		position: absolute;
 		bottom: 5%;
 	}
 
