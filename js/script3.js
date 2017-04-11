@@ -23,6 +23,11 @@ function init() {
 	var faster               = document.getElementById('faster');
 	var fullScreen           = document.getElementById('fullScreen');
 	var cc                   = document.getElementById('cc');
+	
+
+	var prog                 = document.getElementById('progress-bar');
+
+
 
 	// Gets all the p elements for transcript highlighting
 	var transcriptElements   = document.getElementsByTagName('p');
@@ -33,7 +38,6 @@ function init() {
 
 	// Sets volume at half
 	video.volume = .5;
-	console.log('vol at start: ' + video.volume);
 	
 	
 
@@ -41,8 +45,6 @@ function init() {
 	var currentVolume;
 	var currentSpeed;
 	
-
-
 
 
 	console.log('testies');
@@ -186,6 +188,12 @@ function init() {
 		displayVideoTime = displayVideoTime < 10 ? '0' + displayVideoTime : displayVideoTime;
 		displayVideoTime = '00:' + displayVideoTime + ' /';
 		videoCurrentTime.textContent = displayVideoTime;
+
+		// if (true) {
+		// 	prog.addEventListener("mouseover", function() {
+		// 		console.log('float thinger would appear');
+		// 	}, false);
+		// }
 	};
 
 
@@ -282,6 +290,35 @@ function init() {
 	// When the current time updates,
 	// calls the displayVideoCurrentTime() function
 	video.addEventListener("timeupdate", displayVideoCurrentTime, false);
+
+
+
+
+
+
+
+
+
+
+	// Working of float indicator
+	// prog.addEventListener("mouseover", displayVideoCurrentTime, false);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 	// When the current time updates,
 	// calls the hightlightTranscript() function
@@ -415,6 +452,8 @@ function init() {
 
 	// Toggles cc on and off
 	cc.addEventListener("click", ccOnOff, false);
+
+
 
 
 }// end of init function

@@ -102,8 +102,8 @@ $(function() {
 			if (guage.is(":visible")) {
 				timer = setTimeout(function() {
 					guage.fadeOut(500);
-					console.log('2000');
-				}, 2000);
+					console.log('3000');
+				}, 3000);
 			}
 	};
 	
@@ -156,12 +156,7 @@ $(function() {
 	});
 
 
-
-
-	
-
-
-
 	console.log('jquery');
+	
 
 });
