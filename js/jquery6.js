@@ -17,8 +17,8 @@ $(function() {
 
 	// Hides #more-controls after 7 seconds if not touched
 	function noTouchMoreControls() {
-		moreControlsTimeout = setTimeout(moreControlsHide, 7000);
-		console.log('7 seconds countdown');
+		moreControlsTimeout = setTimeout(moreControlsHide, 5000);
+		console.log('5 seconds countdown');
 	}
 
 	// Clears the timeout and #more-controls remains
@@ -85,25 +85,30 @@ $(function() {
 	});
 
 
-
 	var timer;
 
 	var showVolumeAndSpeedGuage = function(guage) {
 
-			timer = setTimeout(function() {
-				guage.fadeOut(500);
-				console.log('5000');
-			}, 5000);
+			timer = guage;
+			console.log(timer);
+			// timer = setTimeout(function() {
+			// 	// clearTimeout(timer);
+			// 	console.log('NOT visible');
+			// 	guage.fadeOut(500);
+			// 	console.log('5000');
+			// }, 5000);
 
 			guage.fadeIn();
+			console.log(guage + ' fadeIn');
 
 			clearTimeout(timer);
 			
 			if (guage.is(":visible")) {
+				console.log(guage + 'is visible');
 				timer = setTimeout(function() {
 					guage.fadeOut(500);
-					console.log('3000');
-				}, 3000);
+					console.log('2000');
+				}, 2000);
 			}
 	};
 	
@@ -111,9 +116,12 @@ $(function() {
 		showVolumeAndSpeedGuage($sideVolume);
 	});
 
+
 	$('#faster, #slower').on("click", function() {
 		showVolumeAndSpeedGuage($sideSpeed);
 	});
+
+
 
 
 
@@ -155,6 +163,8 @@ $(function() {
 		console.log('worky poo');
 	});
 
+	
+	
 
 	console.log('jquery');
 	

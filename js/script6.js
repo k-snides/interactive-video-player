@@ -25,7 +25,7 @@ function init() {
 	var cc                   = document.getElementById('cc');
 	
 
-	var prog                 = document.getElementById('progress-bar');
+	// var prog                 = document.getElementById('progress-bar');
 
 
 
@@ -41,18 +41,23 @@ function init() {
 	
 	
 
-
 	var currentVolume;
 	var currentSpeed;
 	
+
+	
+
+	
+
+
 
 
 	console.log('testies');
 
 	var visualControlsIndicator = function(visualLevel, visual) {
 
-		console.log('visualControlsIndicator called');
-		console.log('visualControlsIndicator: ' + visualLevel.toFixed(1));
+		// console.log('visualControlsIndicator called');
+		// console.log('visualControlsIndicator: ' + visualLevel.toFixed(1));
 
 		if (visualLevel >= 9) {
 			visualLevel = 9;
@@ -66,7 +71,7 @@ function init() {
 
 		for (var i = 0; i < visualLevelRounded; i++) {
 			visual[i].style.backgroundColor = "orange";
-			console.log('visual array: ' + i);
+			// console.log('visual array: ' + i);
 		}
 
 		visual[i].style.backgroundColor = "transparent";
