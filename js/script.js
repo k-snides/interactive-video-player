@@ -46,13 +46,7 @@ function init() {
 	
 
 	
-
-	
-
-
-
-
-	console.log('testies');
+	console.log('new testies');
 
 	var visualControlsIndicator = function(visualLevel, visual) {
 

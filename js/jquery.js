@@ -7,24 +7,12 @@ $(function() {
 	var $sideVolume         = $('#volume-side-controls');
 	var $sideSpeed          = $('#speed-side-controls');
 
+	// hides volume and speed guage till clicked
 	$sideVolume.hide();
 	$sideSpeed.hide();
-
-	// moreControlsTimeout used for set and clear Timeout
-	var moreControlsTimeout;
-	var sideVolumeTimeout;
 	
 
-	// Hides #more-controls after 7 seconds if not touched
-	function noTouchMoreControls() {
-		moreControlsTimeout = setTimeout(moreControlsHide, 5000);
-		console.log('5 seconds countdown');
-	}
 
-	// Clears the timeout and #more-controls remains
-	function yesTouchMoreControls() {
-		clearTimeout(moreControlsTimeout);
-	}
 
 	/**
 	 * [
@@ -45,6 +33,48 @@ $(function() {
 		// Sets the currentTime to the <p data-start=""> attribute
 		$theVideo[0].currentTime = getDataStart;
 	});
+
+
+
+	// moreControlsTimeout used for set and clear Timeout
+	var moreControlsTimeout;
+	var sideVolumeTimeout;
+
+
+
+	var buttonTimeout;
+
+	function setTimeoutButtons(functionToFade, timeToFade) {
+		buttonTimeout = setTimeout(functionToFade, timeToFade);
+		console.log('setTimeoutButtons function called - 5 seconds');
+	}
+
+	function clearTimeoutButtons(functionToClear) {
+		clearTimeout(functionToClear);
+		console.log('clearTimeoutButtons clearing function')
+	}
+
+
+	
+
+	// Hides #more-controls after 7 seconds if not touched
+	// function noTouchMoreControls() {
+	// 	moreControlsTimeout = setTimeout(moreControlsHide, 5000);
+	// 	console.log('5 seconds countdown');
+	// }
+
+	// Clears the timeout and #more-controls remains
+	// function yesTouchMoreControls() {
+	// 	clearTimeout(moreControlsTimeout);
+	// }
+	
+
+
+
+
+
+
+
 
 	
 	/**
@@ -69,7 +99,7 @@ $(function() {
 	};
 
 
-	// Calls moreControlsShow() function on $videoBox mouseenter
+	// Calls moreControlsShow() function on $videoBox mouseenter and click
 	$videoBox.on("click mouseenter", function() {
 		moreControlsShow();
 	});
@@ -84,41 +114,69 @@ $(function() {
 		moreControlsHide();
 	});
 
+	// var timer;
+	var volumeTimer;
+	var speedTimer;
 
-	var timer;
+	// var showVolumeAndSpeedGuage = function(guage) {
 
-	var showVolumeAndSpeedGuage = function(guage) {
+			// if (guage === $sideVolume) {
+			// 	timer = $sideVolume;
+			// }
+			// else {
+			// 	timer = $sideSpeed;
+			// }
 
-			timer = guage;
-			console.log(timer);
-			// timer = setTimeout(function() {
-			// 	// clearTimeout(timer);
-			// 	console.log('NOT visible');
-			// 	guage.fadeOut(500);
-			// 	console.log('5000');
-			// }, 5000);
-
-			guage.fadeIn();
-			console.log(guage + ' fadeIn');
-
-			clearTimeout(timer);
+	// 		guage.fadeIn(500);
 			
-			if (guage.is(":visible")) {
-				console.log(guage + 'is visible');
-				timer = setTimeout(function() {
-					guage.fadeOut(500);
-					console.log('2000');
-				}, 2000);
-			}
-	};
+	// 		if (guage.is(":visible")) {
+	// 			clearTimeout(timer);
+	// 			console.log('guage is visible');
+	// 			timer = setTimeout(function() {
+	// 				guage.fadeOut(500);
+	// 				console.log('2000');
+	// 			}, 2000);
+	// 		}
+	// 		else {
+	// 			console.log('guage is INvisible');
+	// 		}
+	// };
 	
 	$('#volumeUp, #volumeDown').on("click", function() {
-		showVolumeAndSpeedGuage($sideVolume);
+		// showVolumeAndSpeedGuage($sideVolume);
+
+		console.log('volume volumeTimer beginning: ' + volumeTimer);
+
+		$sideVolume.fadeIn(500);
+
+		if ($sideVolume.is(":visible")) {
+			clearTimeout(volumeTimer);
+			volumeTimer = setTimeout(function() {
+				$sideVolume.fadeOut(500);
+				console.log('2000');
+			}, 2000);
+		}
+		console.log('volume volumeTimer end: ' + volumeTimer);
 	});
 
 
 	$('#faster, #slower').on("click", function() {
-		showVolumeAndSpeedGuage($sideSpeed);
+		// showVolumeAndSpeedGuage($sideSpeed);
+		
+		
+		console.log('speed speedTimer beginning: ' + speedTimer);
+
+		$sideSpeed.fadeIn(500);
+
+		if ($sideSpeed.is(":visible")) {
+			clearTimeout(speedTimer);
+			speedTimer = setTimeout(function() {
+				$sideSpeed.fadeOut(500);
+				console.log('2000');
+			}, 2000);
+		}
+
+		console.log('speed speedTimer end: ' + speedTimer);
 	});
 
 
@@ -131,22 +189,27 @@ $(function() {
 	// #more-controls-button calls moreControlsShow() function
 	$moreControlsbutton.on("click", function() {
 		
+		console.log('more controls button pressed');
+
 		// Shows the #more-controls buttons
 		moreControlsShow();
 
 		// Sets timeout so #more-controls will hide
-		noTouchMoreControls();
+		// noTouchMoreControls();
+		setTimeoutButtons(moreControlsHide, 5000);
 
 		// When #more-controls is interacted with
 		$('#more-controls').off().on("click", function() {
 
 			// yesTouchMoreControls is called so clearTimout
 			// is called and user has more time to use controls
-			yesTouchMoreControls();
+			// yesTouchMoreControls();
+			clearTimeoutButtons(buttonTimeout)
 
 			// noTouchMoreControls is then called immediately after
 			// so #more-controls will close after 7 seconds automatically
-			noTouchMoreControls();
+			// noTouchMoreControls();
+			setTimeoutButtons(moreControlsHide, 5000);
 
 			// This repeats till user is finished with controls
 		});
@@ -158,15 +221,21 @@ $(function() {
 
 
 	$theVideo.off().on("click", function() {
-		yesTouchMoreControls();
-		noTouchMoreControls();
+		// yesTouchMoreControls();
+		clearTimeoutButtons(moreControlsHide);
+
+		// noTouchMoreControls();
+		setTimeoutButtons(moreControlsHide, 5000);
 		console.log('worky poo');
 	});
 
 	
 	
 
-	console.log('jquery');
+
+
+
+	console.log('new jQuery');
 	
 
 });

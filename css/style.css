@@ -324,6 +324,7 @@ progress[value]::-webkit-progress-value {
   top: -6%;
   margin: 0 auto;
   transform: rotate(180deg);
+  display: none;
 }
 
 #volume-side-controls {
