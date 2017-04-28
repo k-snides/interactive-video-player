@@ -3,7 +3,6 @@
 =================================================== */
 
 /* ----- GENERAL STYLES ----- */
-
 * {
 	margin: 0;
 	padding: 0;
@@ -18,10 +17,6 @@ body {
 .wrapper {
 	width: 90%;
 	margin: 0 auto;
-}
-
-video {
-	max-width: 100%;
 }
 
 img {
@@ -43,9 +38,25 @@ p {
 
 .hide-show {
 	display: none;
+}/* ----- end GENERAL STYLES ----- */
+
+
+/* ----- VIDEO ----- */
+video {
+	max-width: 100%;
 }
 
-/* ----- Buttons ----- */
+#videoBox {
+	position: relative;
+}
+
+#theVideo {
+	box-shadow: 0 14px 16px -6px #000;
+	position: relative;
+}/* ----- end VIDEO ----- */
+
+
+/* ----- BUTTONS ----- */
 button {
 	background: transparent;
 	background: rgba(255, 153, 0, 0.7);
@@ -172,36 +183,44 @@ button img[src*="play"] {
     right: 0px; 
 }/* --- end CC Button --- */
 
-
-
-#progressPercent {
-	color: #fff;
-	font-size: 1em;
-	text-shadow: 1px 1px 1px gray;
+#playPause,
+#muteUnmute,
+#fullScreen {
+	padding: 2px;
+	background: rgba(128, 128, 128, 0.1);
 }
 
-#videoBox {
-	position: relative;
+#playPause,
+#muteUnmute,
+#fullScreen,
+#videoTime,
+.onoffswitch {
+	position: absolute;
+	bottom: 19%;
 }
 
-#theVideo {
-	box-shadow: 0 14px 16px -6px #000;
-	position: relative;
+#playPause {
+	left: 1%;
 }
 
+.onoffswitch {
+	right: 20%;
+}
+
+#muteUnmute {
+	right: 11%;
+}
+
+#fullScreen {
+	right: 1%;
+}/* ----- end BUTTONS ----- */
 
 
-/* ----- Progress Bars ----- */
+/* ----- PROGRESS BARS ----- */
 .buffered,
 #progress-bar {
 	position: absolute;
   top: 97%;
-  /*transition: .4s ease-in-out .3s;*/
-}
-
-.progress-bottom {
-	/*transform: translateY(80px);*/
-	/*transition: .4s ease-in-out .3s;*/
 }
 
 progress[value] {
@@ -237,26 +256,14 @@ progress[value]::-webkit-progress-value {
   height: 100%;
   background-color: rgba(200, 200, 200, 0.7);
   width: 0; 
-}/* ----- end Progress Bars ----- */
+}/* ----- end PROGRESS BARS ----- */
 
-#playPause,
-#muteUnmute,
-#fullScreen {
-	padding: 2px;
-	background: rgba(128, 128, 128, 0.1);
-}
 
-#playPause,
-#muteUnmute,
-#fullScreen,
-#videoTime,
-.onoffswitch {
-	position: absolute;
-	bottom: 19%;
-}
-
-#playPause {
-	left: 1%;
+/* ----- CONTROLS ----- */
+#progressPercent {
+	color: #fff;
+	font-size: 1em;
+	text-shadow: 1px 1px 1px gray;
 }
 
 #videoTime {
@@ -267,18 +274,6 @@ progress[value]::-webkit-progress-value {
 	text-shadow: 1px 1px 1px gray;
 }
 
-.onoffswitch {
-	right: 20%;
-}
-
-#muteUnmute {
-	right: 11%;
-}
-
-#fullScreen {
-	right: 1%;
-}
-
 #more-controls {
 	position: absolute;
 	width: 100%;
@@ -287,36 +282,20 @@ progress[value]::-webkit-progress-value {
 	padding: 10px 0;
 	border-radius: 20%;
 	top: -60px;
-	/*transform: translateY(-70px);*/
 	opacity: 0.7;
-	/*z-index: -1;*/
+	
 	transition: .4s ease-in-out .3s;
 }
 
 .more-controls-panel {
 	transform: translateY(55px);
 	z-index: 2;
+	
 	transition: .4s ease-in-out;
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 #volume-side-controls,
 #speed-side-controls {
-  /*border: 2px solid #fff;*/
   border-radius: 10px;
   height: 115px;
   width: 40px;
@@ -351,12 +330,10 @@ progress[value]::-webkit-progress-value {
   margin: 3px auto;
   border-radius: 20px;
   opacity: .7;
-}
+}/* ----- end CONTROLS ----- */
 
 
-
-
-/* --- Transcript --- */
+/* ----- TRANSCRIPT ----- */
 #white-slope {
 	background: #fff;
 	position: relative;
@@ -380,20 +357,7 @@ progress[value]::-webkit-progress-value {
 #transcript p:hover {
 	cursor: pointer;
 	background-color: #ddd;
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
+}/* ----- end TRANSCRIPT ----- */
 
 
 
@@ -408,9 +372,9 @@ progress[value]::-webkit-progress-value {
 	/* ----- GENERAL STYLES ----- */
 	.hide-show {
 		display: block;
-	}
+	}/* ----- end GENERAL STYLES ----- */
 
-	/* ----- Buttons ----- */
+	/* ----- BUTTONS ----- */
 	button {
 		padding: 0 1%;
 		font-size: 2em;
@@ -428,30 +392,12 @@ progress[value]::-webkit-progress-value {
 		margin: 5px 2px;
 	}
 
-	#progressPercent {
-		font-size: 1.5em;
-	}
-
-	#more-controls {
-		padding: 10px 0;
-		top: -90px;
-	}
-	.more-controls-panel {
-		transform: translateY(90px);
-	}
-
 	#playPause,
 	#muteUnmute,
 	#fullScreen,
 	#videoTime,
 	.onoffswitch {
 		bottom: 5%;
-	}
-
-	#videoTime {
-		color: #fff;
-		left: 7%;
-		font-size: 1.3em;
 	}
 
 	.onoffswitch {
@@ -464,12 +410,10 @@ progress[value]::-webkit-progress-value {
 
 	#fullScreen {
 		right: 1%;
-	}
+	}/* ----- end BUTTONS ----- */
 
-
-
-
-	/* ----- Progress Bars ----- */
+	
+	/* ----- PROGRESS BARS ----- */
 	.buffered,
 	#progress-bar {
 	  top: 80%;
@@ -479,17 +423,30 @@ progress[value]::-webkit-progress-value {
 	.progress-bottom {
 		transform: translateY(4.5em);
 		transition: .4s ease-in-out .3s;
+	}/* ----- end PROGRESS BARS ----- */
+
+
+	/* ----- CONTROLS ----- */
+	#progressPercent {
+		font-size: 1.5em;
 	}
 
+	#more-controls {
+		padding: 10px 0;
+		top: -90px;
+	}
+	.more-controls-panel {
+		transform: translateY(90px);
+	}
 
+	#videoTime {
+		left: 7%;
+	}
 
 	#volume-side-controls,
 	#speed-side-controls {
-	  /*border: 2px solid #fff;*/
-	  border-radius: 10px;
 	  height: 160px;
 	  width: 50px;
-	  position: absolute;
 	  top: 29%;
 	}
 
@@ -500,14 +457,6 @@ progress[value]::-webkit-progress-value {
 	  left: 0%;
 	}
 
-	#volume-level,
-	#speed-level {
-		transform: rotate(-180deg);
-		color: white;
-		text-align: center;
-		text-shadow: 1px 1px 2px gray;
-	}
-
 	.vol-level,
 	.spd-level {
 	  width: 40px;
@@ -516,9 +465,10 @@ progress[value]::-webkit-progress-value {
 	  margin: 5px auto;
 	  border-radius: 20px;
 	  opacity: .7;
-	}
+	}/* ----- end CONTROLS ----- */
 
-	/* ----- Transcript ----- */
+
+	/* ----- TRANSCRIPT ----- */
 	#white-slope {
 		margin-top: 0%;
 	}
@@ -526,26 +476,8 @@ progress[value]::-webkit-progress-value {
 	#transcript {
 		font-size: 1.2em;
 		line-height: 1.5;
-		padding: 5% 5%;
-	}
-
+	}/* ----- end TRANSCRIPT ----- */
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -560,60 +492,14 @@ progress[value]::-webkit-progress-value {
 	/* ----- GENERAL STYLES ----- */
 	.wrapper {
 		max-width: 1280px;
-	}
+	}/* ----- end GENERAL STYLES ----- */
 
-	/* ----- Buttons ----- */
+	
+	/* ----- BUTTONS ----- */
 	.onoffswitch-switch:before {
 	    font-size: 1.2em;
 	    top: -4px;
 	    left: 1px;
-	}
-
-	#more-controls-button {
-		border-radius: 0;
-		width: 300px;
-		margin: 3% auto;
-	}
-
-	#play-pause-overlay {
-		border: 8px solid #fff;
-		padding: 4%;
-	}
-
-
-
-
-	
-
-	#videoTime {
-		left: 5%;
-		font-size: 1.3em;
-	}
-
-
-
-
-
-	/* ----- Progress Bars ----- */
-	.buffered,
-	#progress-bar {
-		position: absolute;
-	  top: 85.5%;
-	  transition: .4s ease-in-out .3s;
-	}
-
-	.progress-bottom {
-		transform: translateY(5.75em);
-		transition: .4s ease-in-out .3s;
-	}
-
-
-	
-
-	#videoTime {
-		color: #fff;
-		left: 5%;
-		font-size: 1.3em;
 	}
 
 	.onoffswitch {
@@ -626,44 +512,51 @@ progress[value]::-webkit-progress-value {
 
 	#fullScreen {
 		right: 1%;
+	}/* ----- end BUTTONS ----- */
+	
+
+	/* ----- PROGRESS BARS ----- */
+	.buffered,
+	#progress-bar {
+		position: absolute;
+	  top: 85.5%;
+	  
+	  transition: .4s ease-in-out .3s;
 	}
 
+	.progress-bottom {
+		transform: translateY(5.75em);
+		
+		transition: .4s ease-in-out .3s;
+	}/* ----- end PROGRESS BARS ----- */
+	
 
-
-
+	/* ----- CONTROLS ----- */
+	#more-controls-button {
+		border-radius: 0;
+		width: 300px;
+		margin: 3% auto;
+	}
+	
+	#videoTime {
+		left: 5%;
+	}
+	
 	#volume-side-controls,
 	#speed-side-controls { 
 	  top: 37%; 
 	}
 
-	
+	#play-pause-overlay {
+		border: 8px solid #fff;
+		padding: 4%;
+	}/* ----- end CONTROLS ----- */
 
 
-
-	
-
-
-
-
-
-	/* --- Transcript --- */
-	#white-slope {
-		position: relative;
-		transform: skewY(10deg);
-		box-shadow: 0 14px 16px -6px #000,
-								0 -2px 16px -6px #000;
-	}
-
+	/* ----- TRANSCRIPT ----- */
 	#transcript {
 		font-size: 1.5em;
-		line-height: 1.5;
-		padding: 5% 5%;
-		transform: rotateX(0deg);
-		transform: skewY(-10deg);
-		text-shadow: 0 2px white;
-	}
-
-	
+	}/* ----- end TRANSCRIPT ----- */
 }	
 
 
