@@ -23,60 +23,49 @@ function init() {
 	var faster               = document.getElementById('faster');
 	var fullScreen           = document.getElementById('fullScreen');
 	var cc                   = document.getElementById('cc');
+	var currentVolume;
+	var currentSpeed;
 	
-
-	// var prog                 = document.getElementById('progress-bar');
-
-
-
 	// Gets all the p elements for transcript highlighting
 	var transcriptElements   = document.getElementsByTagName('p');
 
 	// Selects volume and speed class for visual indication
-	var visualVolume = document.querySelectorAll('.vol-level');
-	var visualSpeed  = document.querySelectorAll('.spd-level');
+	var visualVolume         = document.querySelectorAll('.vol-level');
+	var visualSpeed          = document.querySelectorAll('.spd-level');
 
-	// Sets volume at half
+	// Sets inital volume at half
 	video.volume = .5;
 	
 	
-
-	var currentVolume;
-	var currentSpeed;
-	
-
-	
-	
-	
-	console.log('new testies');
-
+	/**
+	 * [visualControlsIndicator - Displays volume and speed indicators]
+	 */
 	var visualControlsIndicator = function(visualLevel, visual) {
 
-		// console.log('visualControlsIndicator called');
-		// console.log('visualControlsIndicator: ' + visualLevel.toFixed(1));
-
+		// If volume or speed is maxed...
 		if (visualLevel >= 9) {
+			// Display 9 as the maximum
 			visualLevel = 9;
 		}
 
+		// If volume or speed is set to 1...
 		if (visualLevel <= 1) {
+			// Display 1 as the minimum
 			visualLevel = 1;
 		}
 
-		var visualLevelRounded = Math.round(visualLevel);
-
-		for (var i = 0; i < visualLevelRounded; i++) {
+		// var visualLevelRounded = Math.round(visualLevel);
+		
+		// Loops through the current volume or speed
+		// and sets the background color to orange
+		for (var i = 0; i < visualLevel; i++) {
 			visual[i].style.backgroundColor = "orange";
-			// console.log('visual array: ' + i);
 		}
 
+		// Any volume or speed greater than the visualLevel
+		// length array backgrounds are set to transparent
 		visual[i].style.backgroundColor = "transparent";
-
 	};
-
-
-
-
 
 
 	/**
@@ -84,9 +73,11 @@ function init() {
 	 */
 	var getDuration = function() {
 		var displayLength = document.getElementById('vidLength');
+		
+		// Gets the duration of the video
 		var vidLength = video.duration;
-		console.log('vidLength: ' + vidLength);
 
+		// Rounds down video length and displays it
 		vidLength = Math.floor(vidLength);
 		vidLength = '00:' + vidLength;
 		displayLength.textContent = vidLength;
@@ -106,12 +97,12 @@ function init() {
 	
 	/**
 	 * [playOrPause - Plays video and toggles play/pause button]
-	 * @return {[type]} [description]
 	 */
 	var playOrPause = function() {		
 		// if video is paused, play video and display pause icon
 		if (video.paused) {   
 		 	video.play();
+
 		 	// If play back speed is altered
 		 	// pressing play will resume normal play back
 		 	video.playbackRate = 1;
@@ -151,6 +142,8 @@ function init() {
 	 */
 	var stopButton = function() {
 		pause();
+
+		// Video is paused and goes back to the beginning
 		video.currentTime = 0;
 	};
 
@@ -159,7 +152,7 @@ function init() {
 	 * [ccOnOff - Toggles cc on and off]
 	 */
 	var ccOnOff = function() {
-		// button is unchecked/off cc will be hidden
+		// if button is unchecked/off cc will be hidden
 		if (cc.checked === false) {
 			video.textTracks[0].mode = "hidden";
 		}
@@ -171,30 +164,21 @@ function init() {
 
 
 	/**
-	 * [unmuteWithVolumeButtons - unmutes audio with volume buttons]
-	 */
-	var unmuteWithVolumeButtons = function() {
-		// Calls muteOrUnmute() to unmute and get 'Volume off icon'
-		muteOrUnmute();
-		video.volume = video.volume;
-	};
-
-
-	/**
 	 * [displayVideoCurrentTime - displays video current time]
 	 */
 	var displayVideoCurrentTime = function() {
 		var videoCurrentTime = document.getElementById('videoCurrentTime');
+
+		// Rounds current video time down
 		var displayVideoTime = Math.floor(video.currentTime);
+
+		// if displayVideoTime is less than 10
+		// a '0' will display before the displayVideoTime
 		displayVideoTime = displayVideoTime < 10 ? '0' + displayVideoTime : displayVideoTime;
+
+		// Displays the current video time after the '00:'
 		displayVideoTime = '00:' + displayVideoTime + ' /';
 		videoCurrentTime.textContent = displayVideoTime;
-
-		// if (true) {
-		// 	prog.addEventListener("mouseover", function() {
-		// 		console.log('float thinger would appear');
-		// 	}, false);
-		// }
 	};
 
 
@@ -202,37 +186,53 @@ function init() {
 	 * [hightlightTranscript - hightlights transcript while video plays]
 	 */
 	var hightlightTranscript = function() {
+		// Gets the current video time to 3 decimals places
+		// to match the HTML data attributes and transcript file
 		var theCurrentTime = video.currentTime.toFixed(3);
+
 		var dataStart;
 		var dataEnd;
 		var start;
 		var end;
 
+		// Loops through the all the transcript <p> tags
 		for (var i = 0; i < transcriptElements.length; i++) {
 
+			// Gets the data-start and data-end HTML attribute values
 			dataStart = transcriptElements[i].getAttribute('data-start');
 			dataEnd   = transcriptElements[i].getAttribute('data-end');
 
+			// Then parseFloats them and stores them
+			// Must parseFloat these numbers or else they will not work
 			start     = parseFloat(dataStart);
 			end       = parseFloat(dataEnd);
 			
+			// if the current time is between the start and end values...
 			if (theCurrentTime >= start && theCurrentTime <= end) {
+				// The current transcript will hightlight
 				transcriptElements[i].className = "highlight";
 			}
 			else {
+				// Otherwise they will not highlight
 				transcriptElements[i].className = "";
 			}
 		}
 	};
 
+
 	/**
 	 * [bufferingProgressBar description]
 	 */
 	var bufferingProgressBar = function() {
+		// Finds out how much of the video has been downloaded
     var bufferedEnd = video.buffered.end(video.buffered.length - 1);
+    
     var duration = video.duration;
     if (duration > 0) {
     	var bufferBar = document.getElementById('buffered-amount');
+
+    	// Gets the percent of how much of the video is downloaded
+    	// and is displayed in the #buffered-amount <span> tag
       bufferBar.style.width = ((bufferedEnd / duration) * 100) + "%";
     }
   }
@@ -244,8 +244,15 @@ function init() {
 	var updateProgressBar = function() {
 		var progressBar     = document.getElementById('progress-bar');
 		var progressPercent = document.getElementById('progressPercent');
+		
+		// Gets the progress of the video with the formula below
+		// Then is displayed in CSS using progress[value]::-webkit-progress-value
 		var percentage = Math.floor((100 / video.duration) * video.currentTime);
+		
+		// The video percentage is stored in the progressBar.value
 		progressBar.value = percentage;
+		
+		// Displays the video progress percent
 		progressPercent.textContent = percentage + '%';
 
 		// Click on progress bar to be taken to that part of video
@@ -256,7 +263,11 @@ function init() {
 	};
 
 
+
 	// ----- Event Listeners ----- //
+	
+	// Calls the getDuration() when the video info is loaded; 
+	video.addEventListener("loadedmetadata", getDuration, false);
 	
 	// Video plays or pauses on click
 	video.addEventListener("click", playOrPause, false);
@@ -267,13 +278,9 @@ function init() {
 	// Buffer/Loading progress bar
 	video.addEventListener("progress", bufferingProgressBar, false);
 	
-	// When video ends, video pauses and displays play icon
-	video.addEventListener("ended", function() {
-		pause();
-	}, false);
-
-	// Calls the getDuration() when the video info is loaded; 
-	video.addEventListener("loadedmetadata", getDuration, false);
+	// When the current time updates,
+	// calls the displayVideoCurrentTime() function
+	video.addEventListener("timeupdate", displayVideoCurrentTime, false);
 
 	// Calls the playOrPause() when user clicks play/pause button
 	playPause.addEventListener("click", function() {
@@ -288,38 +295,10 @@ function init() {
 		muteOrUnmute();
 	}, false);
 
-	// When the current time updates,
-	// calls the displayVideoCurrentTime() function
-	video.addEventListener("timeupdate", displayVideoCurrentTime, false);
-
-
-
-
-
-
-
-
-
-
-	// Working of float indicator
-	// prog.addEventListener("mouseover", displayVideoCurrentTime, false);
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+	// When video ends, video pauses and displays play icon
+	video.addEventListener("ended", function() {
+		pause();
+	}, false);
 
 	// When the current time updates,
 	// calls the hightlightTranscript() function
@@ -346,108 +325,6 @@ function init() {
 		video.currentTime += 10;
 	}, false);
 
-
-
-
-
-	// Turns volume down 10%
-	volumeDown.addEventListener("click", function() {
-		video.volume -= 0.1;
-		video.volume.toFixed(1);
-		console.log('volume at button press: ' + video.volume.toFixed(1));
-
-		currentVolume = video.volume * 10;
-		visualControlsIndicator(currentVolume, visualVolume);
-
-		if (video.volume.toFixed(1) <= 0.1) {
-			video.volume = 0.1;
-		}
-		if (video.muted) {
-			unmuteWithVolumeButtons();
-		}
-		console.log(video.volume.toFixed(1));
-	}, false);
-
-	// Turns volume up 10%
-	volumeUp.addEventListener("click", function() {
-		video.volume += 0.1;
-		video.volume.toFixed(1);
-		console.log('volume at button press: ' + video.volume.toFixed(1));
-
-		currentVolume = video.volume * 10;
-		visualControlsIndicator(currentVolume, visualVolume);
-
-		if (video.volume.toFixed(1) >= 0.9) {
-			video.volume = 0.9;
-		}
-		if (video.muted) {
-			unmuteWithVolumeButtons();			
-		}
-		console.log(video.volume.toFixed(1));
-	}, false);
-
-
-
-
-
-
-	
-	// Slows down play back speed by 10%;
-	slower.addEventListener("click", function() {
-		video.playbackRate -= .1;
-
-		video.playbackRate.toFixed(1);
-		console.log('speed at button press: ' + video.playbackRate.toFixed(1));
-
-		currentSpeed = (video.playbackRate * 10) - 5;
-		visualControlsIndicator(currentSpeed, visualSpeed);
-
-		// Video loses audio below 0.5 playbackRate and freezes
-		if (video.playbackRate <= 0.5) {
-			video.playbackRate = 0.5;
-		}
-		console.log(video.playbackRate.toFixed(1));
-	}, false);
-
-	// Speeds up play back speed by 10%;
-	faster.addEventListener("click", function() {
-		video.playbackRate += .1;
-
-		video.playbackRate.toFixed(1);
-		console.log('speed at button press: ' + video.playbackRate.toFixed(1));
-
-		currentSpeed = (video.playbackRate * 10) - 5;
-		visualControlsIndicator(currentSpeed, visualSpeed);
-		
-		// playbackRate is capped at 1.5
-		// for visual indicator
-		if (video.playbackRate >= 1.5) {
-			video.playbackRate = 1.5;
-		}
-		console.log(video.playbackRate.toFixed(1));
-	}, false);
-
-
-
-
-
-
-
-	// Video to Full Screen mode
-	fullScreen.addEventListener("click", function() {
-		if (video.requestFullscreen) {
-      video.requestFullscreen();
-    }
-    else if (video.mozRequestFullScreen) {
-      video.mozRequestFullScreen();
-    }
-    else if (video.webkitRequestFullscreen) {
-      video.webkitRequestFullscreen();
-    }
-	}, false);
-
-	
-
 	// Display Progress bar
 	video.addEventListener("timeupdate", updateProgressBar, false);
 
@@ -455,7 +332,120 @@ function init() {
 	cc.addEventListener("click", ccOnOff, false);
 
 
+	// Turns volume down 10%
+	volumeDown.addEventListener("click", function() {
+		video.volume -= 0.1;
+		
+		// Sets video volume to one decimal place
+		video.volume.toFixed(1);
+		
+		// Video volume is multiplied by 10 for 
+		// visualControlsIndicator function
+		currentVolume = video.volume * 10;
 
+		// Displays volume indicator when decreased
+		visualControlsIndicator(currentVolume, visualVolume);
+
+		// if video volume is less that 0.1...
+		if (video.volume.toFixed(1) <= 0.1) {
+			// It is set to 0.1
+			video.volume = 0.1;
+		}
+
+		// if video is muted...
+		if (video.muted) {
+			// Pressing a volume button unmutes it
+			muteOrUnmute();
+		}
+	}, false);
+
+
+	// Turns volume up 10%
+	volumeUp.addEventListener("click", function() {
+		video.volume += 0.1;
+		
+		// Sets video volume to one decimal place
+		video.volume.toFixed(1);
+
+		// Video volume is multiplied by 10 for 
+		// visualControlsIndicator function
+		currentVolume = video.volume * 10;
+
+		// Displays volume indicator when increased
+		visualControlsIndicator(currentVolume, visualVolume);
+
+		// if video volume is greater that 0.9...
+		if (video.volume.toFixed(1) >= 0.9) {
+			// It is set to 0.9
+			video.volume = 0.9;
+		}
+
+		// if video is muted...
+		if (video.muted) {
+			// Pressing a volume button unmutes it
+			muteOrUnmute();
+		}
+	}, false);
+
+	
+	// Slows down play back speed by 10%;
+	slower.addEventListener("click", function() {
+		video.playbackRate -= .1;
+
+		// Sets play back speed to one decimal place
+		video.playbackRate.toFixed(1);
+		
+		// Video speed is multiplied by 10 then subtracted 
+		// by 5 for visualControlsIndicator function
+		currentSpeed = (video.playbackRate * 10) - 5;
+
+		// Displays speed indicator when decreased
+		visualControlsIndicator(currentSpeed, visualSpeed);
+
+		// if video play back rate is below 0.5 
+		// play back rate becomes distorted and freezes
+		if (video.playbackRate <= 0.5) {
+			// So video play back will go no lower than 0.5
+			video.playbackRate = 0.5;
+		}
+	}, false);
+
+
+	// Speeds up play back speed by 10%;
+	faster.addEventListener("click", function() {
+		video.playbackRate += .1;
+
+		// Sets play back speed to one decimal place
+		video.playbackRate.toFixed(1);
+		
+		// Video speed is multiplied by 10 then subtracted 
+		// by 5 for visualControlsIndicator function
+		currentSpeed = (video.playbackRate * 10) - 5;
+		visualControlsIndicator(currentSpeed, visualSpeed);
+		
+		// Play back rate is maxed at 1.5
+		// for visual visual controls indicator
+		if (video.playbackRate >= 1.5) {
+			video.playbackRate = 1.5;
+		}
+	}, false);
+
+
+	// Video to Full Screen mode
+	fullScreen.addEventListener("click", function() {
+		// All other browsers
+		if (video.requestFullscreen) {
+      video.requestFullscreen();
+    }
+    // Firefox
+    else if (video.mozRequestFullScreen) {
+      video.mozRequestFullScreen();
+    }
+    // Chrome and Sarit
+    else if (video.webkitRequestFullscreen) {
+      video.webkitRequestFullscreen();
+    }
+	}, false);
 
 }// end of init function
 		

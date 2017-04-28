@@ -102,7 +102,6 @@ $(function() {
 			// after user stops clicking
 			speedTimer = setTimeout(function() {
 				$sideSpeed.fadeOut(500);
-				console.log('2000');
 			}, 2000);
 		}
 	});
