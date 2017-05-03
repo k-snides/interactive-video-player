@@ -8,6 +8,7 @@ $(function() {
 	var $theVideo 					= $('#theVideo');
 	var $transcriptP        = $('#transcript p');
 	var $moreControlsbutton = $('#more-controls-button');
+	var $playPauseOverlay   = $('#play-pause-overlay');
 	var $sideVolume         = $('#volume-side-controls');
 	var $sideSpeed          = $('#speed-side-controls');
 
@@ -122,6 +123,12 @@ $(function() {
 	});
 
 
+	// Will hide #more-controls when play pause overlay is clicked
+	$playPauseOverlay.on("click", function() {
+		setMoreControls();
+	}); 
+
+
 	// FOR TOUCH DEVICES (since no hover capabilities)
 	// #more-controls-button calls moreControlsShow() function
 	$moreControlsbutton.on("click", function() {
@@ -159,14 +166,4 @@ $(function() {
 		// so #more-controls will close after 5 seconds automatically
 		setMoreControls();
 	});
-
-	
-	
-	// TODO: when big play overlay is pressed,
-	// #more-controls will not hide
-
-
-	
-
-	console.log('test jQuery file');
 });

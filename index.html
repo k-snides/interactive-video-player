@@ -17,8 +17,7 @@
 				<!-- Video -->
 				<video preload id="theVideo">
 					<source src="video/video.mp4" type="video/mp4" />
-					<source src="video/video.og
-					g" type="video/ogg" />
+					<source src="video/video.ogg" type="video/ogg" />
 					<track label="English" kind="subtitles" srclang="en" src="video/captions.vtt" default />
 				</video>
 
@@ -32,7 +31,7 @@
 					  	<!-- Buffer/Loading bar displayed here -->
 					  </span>
 					</div><!-- /.buffered -->
-					<progress id="progress-bar" min="0" max="100" value="0">
+					<progress id="progress-bar" max="100" value="0">
 						<!-- Progress bar displayed here -->
 					</progress>
 				</div><!-- /#progress-buffer-bar -->
@@ -70,21 +69,21 @@
 				<div id="more-controls">
 					<div id="progressPercent" class="hide-show">0%</div>
 
-					<button id="restart">|<<</button>
-					<button id="rewind"><<</button>
+					<button id="restart">|&lt;&lt;</button>
+					<button id="rewind">&lt;&lt;</button>
 					<button id="slower">
 						<img src="icons/play-icon.png" alt="Play button" />-
 					</button>
 					<button id="volumeDown">-</button>
 					<button id="stop">
-						<div></div>
+						<span></span>
 					</button>
 					<button id="volumeUp">+</button>
 					<button id="faster">
 						<img src="icons/play-icon.png" alt="Play button" />+
 					</button>
-					<button id="forward">>></button>
-					<button id="videoEnd">>>|</button>
+					<button id="forward">&gt;&gt;</button>
+					<button id="videoEnd">&gt;&gt;|</button>
 				</div><!-- /#more-controls -->
 
 				<div id="volume-side-controls">
