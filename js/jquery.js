@@ -1,3 +1,6 @@
+// Used so JSHint ignores $ and won't give undefined error
+/*globals $:false */
+
 $(function() {
 	
 	// jQuery Variables
@@ -56,7 +59,7 @@ $(function() {
 		var getDataStart = $(this).attr('data-start');
 
 		// prevents cc overlap
-		getDataStart = Math.abs(parseFloat(getDataStart) + .100);
+		getDataStart = Math.abs(parseFloat(getDataStart) + 0.100);
 		
 		// Sets the currentTime to the <p data-start=""> attribute
 		$theVideo[0].currentTime = getDataStart;

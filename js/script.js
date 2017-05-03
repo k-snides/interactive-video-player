@@ -1,5 +1,3 @@
-// (function($) {
-
 window.onload = init;
 
 /**
@@ -34,7 +32,7 @@ function init() {
 	var visualSpeed          = document.querySelectorAll('.spd-level');
 
 	// Sets inital volume at half
-	video.volume = .5;
+	video.volume = 0.5;
 	
 	
 	/**
@@ -235,7 +233,7 @@ function init() {
     	// and is displayed in the #buffered-amount <span> tag
       bufferBar.style.width = ((bufferedEnd / duration) * 100) + "%";
     }
-  }
+  };
 
 
 	/**
@@ -390,7 +388,7 @@ function init() {
 	
 	// Slows down play back speed by 10%;
 	slower.addEventListener("click", function() {
-		video.playbackRate -= .1;
+		video.playbackRate -= 0.1;
 
 		// Sets play back speed to one decimal place
 		video.playbackRate.toFixed(1);
@@ -413,7 +411,7 @@ function init() {
 
 	// Speeds up play back speed by 10%;
 	faster.addEventListener("click", function() {
-		video.playbackRate += .1;
+		video.playbackRate += 0.1;
 
 		// Sets play back speed to one decimal place
 		video.playbackRate.toFixed(1);
@@ -449,7 +447,3 @@ function init() {
 
 }// end of init function
 		
-
-	
-	
-// })(jQuery);
