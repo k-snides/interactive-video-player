@@ -69,21 +69,21 @@
 				<div id="more-controls">
 					<div id="progressPercent" class="hide-show">0%</div>
 
-					<button id="restart">|&lt;&lt;</button>
-					<button id="rewind">&lt;&lt;</button>
-					<button id="slower">
+					<button class="tooltip" id="restart" data-tip="Skip to start">|&lt;&lt;</button>
+					<button class="tooltip" id="rewind" data-tip="Back 10 seconds">&lt;&lt;</button>
+					<button class="tooltip" id="slower" data-tip="Speed down">
 						<img src="icons/play-icon.png" alt="Play button" />-
 					</button>
-					<button id="volumeDown">-</button>
-					<button id="stop">
+					<button class="tooltip" id="volumeDown" data-tip="Volume down">-</button>
+					<button class="tooltip" id="stop" data-tip="Stop">
 						<span></span>
 					</button>
-					<button id="volumeUp">+</button>
-					<button id="faster">
+					<button class="tooltip" id="volumeUp" data-tip="Volume up">+</button>
+					<button class="tooltip" id="faster" data-tip="Speed up">
 						<img src="icons/play-icon.png" alt="Play button" />+
 					</button>
-					<button id="forward">&gt;&gt;</button>
-					<button id="videoEnd">&gt;&gt;|</button>
+					<button class="tooltip" id="forward" data-tip="Forward 10 seconds">&gt;&gt;</button>
+					<button class="tooltip" id="videoEnd" data-tip="Skip to end">&gt;&gt;|</button>
 				</div><!-- /#more-controls -->
 
 				<div id="volume-side-controls">
@@ -128,7 +128,7 @@
 
 		<div id="white-slope">
 
-			<div class="wrapper perspective">
+			<div class="wrapper">
 
 			<!-- white slope background -->
 

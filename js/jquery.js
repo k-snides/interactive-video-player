@@ -20,7 +20,7 @@ $(function() {
 	var moreControlsTimeout;
 	var volumeTimer;
 	var speedTimer;
-
+	
 
 	// Hides #more-controls after 5 seconds if not touched
 	var setMoreControls = function() {

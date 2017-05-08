@@ -33,6 +33,25 @@ function init() {
 
 	// Sets inital volume at half
 	video.volume = 0.5;
+
+	// Need to call getDuration function right away as event listener 
+	// fires too late for Firefox & Safari to display duration
+	getDuration();
+
+	/**
+	 * [getDuration - Gets video duration and displays it]
+	 */
+	function getDuration() {
+		var displayLength = document.getElementById('vidLength');
+		
+		// Gets the duration of the video
+		var vidLength = video.duration;
+		
+		// Rounds down video length and displays it
+		vidLength = Math.floor(vidLength);
+		vidLength = '00:' + vidLength;
+		displayLength.textContent = vidLength;
+	}
 	
 	
 	/**
@@ -63,22 +82,6 @@ function init() {
 		// Any volume or speed greater than the visualLevel
 		// length array backgrounds are set to transparent
 		visual[i].style.backgroundColor = "transparent";
-	};
-
-
-	/**
-	 * [getDuration - Gets video duration and displays it]
-	 */
-	var getDuration = function() {
-		var displayLength = document.getElementById('vidLength');
-		
-		// Gets the duration of the video
-		var vidLength = video.duration;
-
-		// Rounds down video length and displays it
-		vidLength = Math.floor(vidLength);
-		vidLength = '00:' + vidLength;
-		displayLength.textContent = vidLength;
 	};
 
 
@@ -264,8 +267,9 @@ function init() {
 
 	// ----- Event Listeners ----- //
 	
-	// Calls the getDuration() when the video info is loaded; 
-	video.addEventListener("loadedmetadata", getDuration, false);
+	// Calls the getDuration() when the video info is loaded
+	// Originally used 'loadedmetadata' but a bit unreliable
+	video.addEventListener("durationchange", getDuration, false);
 	
 	// Video plays or pauses on click
 	video.addEventListener("click", playOrPause, false);
