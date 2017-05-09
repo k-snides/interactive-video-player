@@ -427,7 +427,7 @@ progress[value]::-webkit-progress-value {
 
 
 /* ===================================================
------ Landscape Phones () -----
+----- Landscape Phones (525px and up) -----
 =================================================== */
 
 @media screen and (min-width: 525px) {
@@ -457,10 +457,7 @@ progress[value]::-webkit-progress-value {
 
 	/* ----- BUTTONS ----- */
 	button {
-		padding: 0 1%;
 		font-size: 2em;
-		margin: 0 0.5%;
-		padding: 0 1%;
 	}
 
 	button img[src*="play"] {

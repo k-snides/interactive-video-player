@@ -104,9 +104,6 @@ function init() {
 		if (video.paused) {   
 		 	video.play();
 
-		 	// If play back speed is altered
-		 	// pressing play will resume normal play back
-		 	video.playbackRate = 1;
 		 	playPause.setAttribute('src', 'icons/pause-icon.png');
 		 	playPause.setAttribute('alt', 'Pause button');
 		 	playPauseOverlay.style.display = "none";
